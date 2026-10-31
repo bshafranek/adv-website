@@ -22,7 +22,7 @@ export function TripCollectionsProvider({ children }: { children: ReactNode }) {
       setRouteColor: (routeId, color) =>
         setRouteState((prev) => ({
           ...prev,
-          [routeId]: { visible: prev[routeId]?.visible ?? true, color },
+          [routeId]: { visible: prev[routeId]?.visible ?? false, color },
         })),
       reorderRoutes: setRouteOrder,
     }),

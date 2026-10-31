@@ -22,7 +22,7 @@ export function CollectionList() {
             <RouteListItem
               key={route.id}
               route={route}
-              visible={routeState[route.id]?.visible ?? true}
+              visible={routeState[route.id]?.visible ?? false}
               color={route.color ?? collection.defaultColor}
               onToggleVisible={(visible) => setRouteVisible(route.id, visible)}
             />
