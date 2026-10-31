@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import type { GpxParseResult } from '../types/gpx';
 import { parseGpx } from '../utils/gpx/parseGpx';
+import { useGpxStatus } from './useGpxStatus';
 
 export interface UseGpxRouteResult {
   data: GpxParseResult | null;
   loading: boolean;
 }
 
-// TODO: once parseGpx is implemented, this should also expose parse errors
-// surfaced to the App Status page rather than swallowing them.
 export function useGpxRoute(file: string | null): UseGpxRouteResult {
   const [result, setResult] = useState<GpxParseResult | null>(null);
   const [loadedFile, setLoadedFile] = useState<string | null>(null);
+  const { reportParseResult } = useGpxStatus();
 
   useEffect(() => {
     if (!file) return;
@@ -22,13 +22,14 @@ export function useGpxRoute(file: string | null): UseGpxRouteResult {
       if (!cancelled) {
         setResult(parsed);
         setLoadedFile(file);
+        reportParseResult(file, parsed);
       }
     });
 
     return () => {
       cancelled = true;
     };
-  }, [file]);
+  }, [file, reportParseResult]);
 
   return {
     data: file ? result : null,

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { GpxParseResult } from '../types/gpx';
 import { parseGpx } from '../utils/gpx/parseGpx';
+import { useGpxStatus } from './useGpxStatus';
 
 export interface RouteRef {
   id: string;
@@ -12,6 +13,7 @@ export interface RouteRef {
 export function useGpxRoutes(routes: RouteRef[]): Record<string, GpxParseResult> {
   const [cache, setCache] = useState<Record<string, GpxParseResult>>({});
   const inFlight = useRef(new Set<string>());
+  const { reportParseResult } = useGpxStatus();
 
   useEffect(() => {
     for (const { id, file } of routes) {
@@ -20,9 +22,10 @@ export function useGpxRoutes(routes: RouteRef[]): Record<string, GpxParseResult>
       parseGpx(file).then((data) => {
         inFlight.current.delete(id);
         setCache((prev) => ({ ...prev, [id]: data }));
+        reportParseResult(file, data);
       });
     }
-  }, [routes, cache]);
+  }, [routes, cache, reportParseResult]);
 
   return cache;
 }

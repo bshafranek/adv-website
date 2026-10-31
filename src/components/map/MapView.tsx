@@ -1,9 +1,9 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { MapContainer, TileLayer, Polyline, Marker, Popup, CircleMarker } from 'react-leaflet';
-import type { LatLngExpression } from 'leaflet';
+import type { LatLngExpression, Polyline as LeafletPolyline } from 'leaflet';
 import { BASEMAPS } from '../../constants/basemaps';
 import { BasemapControl } from './BasemapControl';
-import { AutoFitBounds } from './AutoFitBounds';
+import { FitBoundsControl } from './FitBoundsControl';
 import { MapResizeHandler } from './MapResizeHandler';
 import { MapFlyTo } from './MapFlyTo';
 import { WaypointPopup } from '../waypoints/WaypointPopup';
@@ -61,8 +61,8 @@ export function MapView({
   );
   const routeData = useGpxRoutes(routeRefs);
 
-  // Memoized so AutoFitBounds only re-fits when the visible/loaded route set
-  // actually changes, not on every render (e.g. hover-driven cursor updates).
+  // Memoized so the positions array passed to FitBoundsControl stays stable
+  // across unrelated renders (e.g. hover-driven cursor updates).
   const polylinesByRoute = useMemo(
     () =>
       visibleRoutes.map((route) => ({
@@ -76,6 +76,17 @@ export function MapView({
     () => polylinesByRoute.flatMap((r) => r.positions),
     [polylinesByRoute],
   );
+
+  // Leaflet doesn't reorder a layer's DOM position just because React
+  // re-renders it in a different array order, so stacking has to be driven
+  // explicitly: bring each polyline to front in bottom-to-top order whenever
+  // the order changes or a route's data finishes loading.
+  const polylineRefs = useRef(new Map<string, LeafletPolyline>());
+  useEffect(() => {
+    visibleRoutes.forEach((route) => {
+      polylineRefs.current.get(route.id)?.bringToFront();
+    });
+  }, [visibleRoutes, routeData]);
 
   return (
     <div className="relative h-full min-h-72 w-full overflow-hidden rounded-lg border border-border">
@@ -95,23 +106,32 @@ export function MapView({
           maxZoom={activeBasemap.maxZoom}
         />
         {polylinesByRoute
-          .filter((r) => r.positions.length > 0)
+          .filter((r) => r.positions.length > 0 && (routeState[r.id]?.lineVisible ?? true))
           .map((r) => (
             <Polyline
               key={r.id}
+              ref={(instance) => {
+                if (instance) {
+                  polylineRefs.current.set(r.id, instance);
+                } else {
+                  polylineRefs.current.delete(r.id);
+                }
+              }}
               positions={r.positions}
               pathOptions={{ color: r.color, weight: 3 }}
             />
           ))}
-        {visibleRoutes.flatMap((route) =>
-          (routeData[route.id]?.waypoints ?? []).map((wp, i) => (
-            <Marker key={`${route.id}-wp-${i}`} position={[wp.lat, wp.lon]}>
-              <Popup>
-                <WaypointPopup waypoint={wp} />
-              </Popup>
-            </Marker>
-          )),
-        )}
+        {visibleRoutes
+          .filter((route) => routeState[route.id]?.waypointsVisible ?? true)
+          .flatMap((route) =>
+            (routeData[route.id]?.waypoints ?? []).map((wp, i) => (
+              <Marker key={`${route.id}-wp-${i}`} position={[wp.lat, wp.lon]}>
+                <Popup>
+                  <WaypointPopup waypoint={wp} />
+                </Popup>
+              </Marker>
+            )),
+          )}
         {cursorPosition && (
           <CircleMarker
             center={cursorPosition}
@@ -119,7 +139,7 @@ export function MapView({
             pathOptions={{ color: '#ffffff', weight: 2, fillColor: '#f97316', fillOpacity: 1 }}
           />
         )}
-        <AutoFitBounds positions={allPositions as [number, number][]} />
+        <FitBoundsControl positions={allPositions as [number, number][]} />
         <MapFlyTo target={flyToTarget ?? null} />
         <MapResizeHandler />
       </MapContainer>

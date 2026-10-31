@@ -5,6 +5,17 @@ import {
   type TripCollectionsContextValue,
 } from './tripCollectionsStore';
 
+const DEFAULT_ROUTE_STATE: RouteUiState = {
+  visible: false,
+  color: null,
+  waypointsVisible: true,
+  lineVisible: true,
+};
+
+function withDefaults(state: RouteUiState | undefined): RouteUiState {
+  return { ...DEFAULT_ROUTE_STATE, ...state };
+}
+
 // TODO: persist routeState/routeOrder to localStorage so customizations survive a reload.
 export function TripCollectionsProvider({ children }: { children: ReactNode }) {
   const [routeState, setRouteState] = useState<Record<string, RouteUiState>>({});
@@ -19,7 +30,7 @@ export function TripCollectionsProvider({ children }: { children: ReactNode }) {
       setRouteVisible: (routeId, visible) => {
         setRouteState((prev) => ({
           ...prev,
-          [routeId]: { color: prev[routeId]?.color ?? null, visible },
+          [routeId]: { ...withDefaults(prev[routeId]), visible },
         }));
         // routeOrder[0] is the top of the visual stack; it only ever tracks
         // currently-visible routes, so the first route turned on stays on top
@@ -38,7 +49,17 @@ export function TripCollectionsProvider({ children }: { children: ReactNode }) {
       setRouteColor: (routeId, color) =>
         setRouteState((prev) => ({
           ...prev,
-          [routeId]: { visible: prev[routeId]?.visible ?? false, color },
+          [routeId]: { ...withDefaults(prev[routeId]), color },
+        })),
+      setWaypointsVisible: (routeId, waypointsVisible) =>
+        setRouteState((prev) => ({
+          ...prev,
+          [routeId]: { ...withDefaults(prev[routeId]), waypointsVisible },
+        })),
+      setLineVisible: (routeId, lineVisible) =>
+        setRouteState((prev) => ({
+          ...prev,
+          [routeId]: { ...withDefaults(prev[routeId]), lineVisible },
         })),
       reorderRoutes: setRouteOrder,
       setActiveRoute: setActiveRouteId,

@@ -2,12 +2,46 @@ import { useMemo, useState } from 'react';
 import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
 
+// Plain SVGs instead of emoji — emoji glyphs render as fixed-color bitmaps in
+// most fonts/browsers and ignore the `color`/opacity CSS used to show
+// on/off state, so a color/opacity toggle on them would be invisible.
+function LineIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="14"
+      height="14"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M4 18 L10 10 L14 14 L20 6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function PinIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
+    </svg>
+  );
+}
+
 // routeOrder[0] is the top of the visual stack (rendered last/on top by
 // MapView). Dragging a row here reorders both the list and the map stacking.
 export function ActiveLayersList() {
   const { manifest } = useManifest();
-  const { routeState, routeOrder, activeRouteId, reorderRoutes, setRouteVisible, setActiveRoute } =
-    useTripCollections();
+  const {
+    routeState,
+    routeOrder,
+    activeRouteId,
+    reorderRoutes,
+    setRouteVisible,
+    setWaypointsVisible,
+    setLineVisible,
+    setActiveRoute,
+  } = useTripCollections();
   const [draggedId, setDraggedId] = useState<string | null>(null);
 
   const routeLookup = useMemo(() => {
@@ -45,6 +79,8 @@ export function ActiveLayersList() {
         routeOrder.map((id) => {
           const info = routeLookup.get(id);
           if (!info) return null;
+          const lineVisible = routeState[id]?.lineVisible ?? true;
+          const waypointsVisible = routeState[id]?.waypointsVisible ?? true;
 
           return (
             <div
@@ -73,6 +109,22 @@ export function ActiveLayersList() {
                 }`}
               >
                 {info.title}
+              </button>
+              <button
+                type="button"
+                onClick={() => setLineVisible(id, !lineVisible)}
+                title={lineVisible ? 'Hide line' : 'Show line'}
+                className={lineVisible ? 'text-accent' : 'text-gray-500 hover:text-gray-300'}
+              >
+                <LineIcon />
+              </button>
+              <button
+                type="button"
+                onClick={() => setWaypointsVisible(id, !waypointsVisible)}
+                title={waypointsVisible ? 'Hide waypoints' : 'Show waypoints'}
+                className={waypointsVisible ? 'text-accent' : 'text-gray-500 hover:text-gray-300'}
+              >
+                <PinIcon />
               </button>
               <button
                 type="button"
