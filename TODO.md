@@ -1,22 +1,19 @@
 # To Do
 
-## Navigation: hamburger menu + new pages
+## ~~Navigation: hamburger menu + new pages~~ — done
 
-Add a hamburger menu to `AppHeader`, and move "App Status" under it instead
-of a bare top-right link. Candidate pages for the menu:
+`AppHeader` now has a hamburger (☰) button opening a dropdown with App
+Status, How to Use, and About — closes on link click or click-outside.
+Added `/about` (`AboutPage`) and `/how-to-use` (`HowToUsePage`) routes.
 
-- **App Status** (existing, just relocate)
-- **About** — what this site is, credits, link to the GitHub repo
-- **How to Use** — basemap switcher, toggling routes/waypoints, color
-  picker, drag-to-reorder layers, elevation chart hover/click-to-zoom, GPX
-  download
-- Other pages worth considering:
-  - **Changelog / What's New** — this app has grown a lot through iteration;
-    could be nice to show progress for an open-source project
-  - **Settings** — unit system (imperial/metric), default basemap, maybe
-    theme — only worth it once there's more than one or two preferences
-  - Probably _not_ needed: a separate "browse all routes" catalog page,
-    since the sidebar + collections already cover that
+Still-open ideas for more pages later:
+
+- **Changelog / What's New** — this app has grown a lot through iteration;
+  could be nice to show progress for an open-source project
+- **Settings** — unit system (imperial/metric), default basemap, maybe
+  theme — only worth it once there's more than one or two preferences
+- Probably _not_ needed: a separate "browse all routes" catalog page, since
+  the sidebar + collections already cover that
 
 ## ~~Independent waypoint/route visibility~~ — done
 
