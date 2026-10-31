@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
+import { useGpxStatus } from '../../hooks/useGpxStatus';
 import { LineIcon, PinIcon } from '../icons/LayerIcons';
 
 // routeOrder[0] is the top of the visual stack (rendered last/on top by
@@ -18,14 +19,16 @@ export function ActiveLayersList() {
     setActiveRoute,
   } = useTripCollections();
   const [draggedId, setDraggedId] = useState<string | null>(null);
+  const { processedFiles } = useGpxStatus();
 
   const routeLookup = useMemo(() => {
-    const map = new Map<string, { title: string; color: string }>();
+    const map = new Map<string, { title: string; color: string; file: string }>();
     manifest?.collections.forEach((collection) => {
       collection.routes.forEach((route) => {
         map.set(route.id, {
           title: route.title,
           color: routeState[route.id]?.color ?? route.color ?? collection.defaultColor,
+          file: route.file,
         });
       });
     });
@@ -56,6 +59,9 @@ export function ActiveLayersList() {
           if (!info) return null;
           const lineVisible = routeState[id]?.lineVisible ?? true;
           const waypointsVisible = routeState[id]?.waypointsVisible ?? true;
+          // Default to true (assume it might have waypoints) until the file
+          // actually finishes parsing, so the icon doesn't flash disabled.
+          const hasWaypoints = (processedFiles[info.file]?.waypointCount ?? 1) > 0;
 
           return (
             <div
@@ -95,9 +101,22 @@ export function ActiveLayersList() {
               </button>
               <button
                 type="button"
-                onClick={() => setWaypointsVisible(id, !waypointsVisible)}
-                title={waypointsVisible ? 'Hide waypoints' : 'Show waypoints'}
-                className={waypointsVisible ? 'text-accent' : 'text-gray-500 hover:text-gray-300'}
+                onClick={() => hasWaypoints && setWaypointsVisible(id, !waypointsVisible)}
+                disabled={!hasWaypoints}
+                title={
+                  !hasWaypoints
+                    ? 'This route has no waypoints'
+                    : waypointsVisible
+                      ? 'Hide waypoints'
+                      : 'Show waypoints'
+                }
+                className={
+                  !hasWaypoints
+                    ? 'cursor-not-allowed text-gray-700'
+                    : waypointsVisible
+                      ? 'text-accent'
+                      : 'text-gray-500 hover:text-gray-300'
+                }
               >
                 <PinIcon />
               </button>

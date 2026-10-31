@@ -46,7 +46,7 @@ export function ViewerPage() {
     <MainLayout
       sidebar={
         <>
-          <div className="border-b border-border pb-2">
+          <div className="sticky top-0 z-10 border-b border-border bg-surface pb-2">
             <ActiveLayersList />
           </div>
           <CollectionList />
