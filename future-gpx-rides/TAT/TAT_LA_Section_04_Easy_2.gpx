@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="mymaps_to_gpx"
+     xmlns="http://www.topografix.com/GPX/1/1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <name>TAT LA Section 4 Easy 2</name>
+    <trkseg>
+      <trkpt lat="37.746547" lon="-110.909173"/>
+      <trkpt lat="37.745974" lon="-110.909293"/>
+      <trkpt lat="37.745417" lon="-110.909293"/>
+      <trkpt lat="37.744816" lon="-110.909207"/>
+      <trkpt lat="37.743786" lon="-110.908864"/>
+      <trkpt lat="37.742885" lon="-110.908349"/>
+      <trkpt lat="37.742155" lon="-110.907662"/>
+      <trkpt lat="37.724560" lon="-110.890453"/>
+      <trkpt lat="37.723830" lon="-110.889723"/>
+      <trkpt lat="37.722886" lon="-110.888522"/>
+      <trkpt lat="37.722457" lon="-110.888136"/>
+      <trkpt lat="37.720182" lon="-110.886762"/>
+      <trkpt lat="37.718852" lon="-110.886119"/>
+      <trkpt lat="37.717994" lon="-110.885947"/>
+      <trkpt lat="37.716749" lon="-110.885990"/>
+      <trkpt lat="37.716234" lon="-110.885818"/>
+      <trkpt lat="37.715719" lon="-110.885432"/>
+      <trkpt lat="37.714861" lon="-110.884445"/>
+      <trkpt lat="37.714303" lon="-110.883887"/>
+      <trkpt lat="37.713745" lon="-110.883544"/>
+      <trkpt lat="37.711299" lon="-110.882299"/>
+      <trkpt lat="37.709411" lon="-110.881655"/>
+      <trkpt lat="37.707866" lon="-110.881312"/>
+      <trkpt lat="37.706535" lon="-110.880926"/>
+      <trkpt lat="37.705806" lon="-110.880540"/>
+      <trkpt lat="37.704561" lon="-110.879724"/>
+      <trkpt lat="37.704003" lon="-110.879467"/>
+      <trkpt lat="37.703445" lon="-110.879381"/>
+      <trkpt lat="37.702330" lon="-110.879681"/>
+      <trkpt lat="37.701943" lon="-110.879681"/>
+      <trkpt lat="37.701557" lon="-110.879595"/>
+      <trkpt lat="37.701214" lon="-110.879381"/>
+      <trkpt lat="37.700227" lon="-110.878565"/>
+      <trkpt lat="37.699411" lon="-110.877965"/>
+      <trkpt lat="37.698982" lon="-110.877493"/>
+      <trkpt lat="37.698725" lon="-110.877106"/>
+      <trkpt lat="37.698553" lon="-110.876634"/>
+      <trkpt lat="37.698467" lon="-110.876162"/>
+      <trkpt lat="37.698424" lon="-110.875604"/>
+      <trkpt lat="37.698467" lon="-110.873845"/>
+      <trkpt lat="37.698424" lon="-110.873459"/>
+      <trkpt lat="37.698338" lon="-110.873072"/>
+      <trkpt lat="37.698081" lon="-110.872300"/>
+      <trkpt lat="37.697480" lon="-110.871012"/>
+      <trkpt lat="37.696536" lon="-110.869510"/>
+      <trkpt lat="37.696278" lon="-110.868910"/>
+      <trkpt lat="37.696021" lon="-110.867880"/>
+      <trkpt lat="37.695763" lon="-110.865905"/>
+      <trkpt lat="37.695549" lon="-110.865133"/>
+      <trkpt lat="37.694948" lon="-110.863931"/>
+      <trkpt lat="37.694133" lon="-110.862687"/>
+      <trkpt lat="37.693832" lon="-110.862429"/>
+      <trkpt lat="37.693532" lon="-110.862258"/>
+      <trkpt lat="37.692931" lon="-110.862043"/>
+      <trkpt lat="37.691558" lon="-110.862086"/>
+      <trkpt lat="37.690957" lon="-110.861957"/>
+      <trkpt lat="37.690099" lon="-110.861313"/>
+      <trkpt lat="37.689627" lon="-110.860756"/>
+      <trkpt lat="37.689369" lon="-110.860369"/>
+      <trkpt lat="37.689026" lon="-110.859511"/>
+      <trkpt lat="37.688854" lon="-110.858824"/>
+      <trkpt lat="37.688339" lon="-110.855563"/>
+      <trkpt lat="37.688210" lon="-110.855134"/>
+      <trkpt lat="37.687867" lon="-110.854361"/>
+      <trkpt lat="37.687610" lon="-110.854061"/>
+      <trkpt lat="37.687352" lon="-110.853803"/>
+      <trkpt lat="37.682417" lon="-110.851486"/>
+      <trkpt lat="37.681430" lon="-110.851143"/>
+      <trkpt lat="37.679364" lon="-110.850807"/>
+    </trkseg>
+  </trk>
+</gpx>
