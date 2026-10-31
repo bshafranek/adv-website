@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="mymaps_to_gpx"
+     xmlns="http://www.topografix.com/GPX/1/1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <name>TAT Section 35 Easy 2</name>
+    <trkseg>
+      <trkpt lat="38.924644" lon="-110.377143"/>
+      <trkpt lat="38.924559" lon="-110.377486"/>
+      <trkpt lat="38.924258" lon="-110.378215"/>
+      <trkpt lat="38.923228" lon="-110.379675"/>
+      <trkpt lat="38.922971" lon="-110.380275"/>
+      <trkpt lat="38.922756" lon="-110.381177"/>
+      <trkpt lat="38.921984" lon="-110.385511"/>
+      <trkpt lat="38.921597" lon="-110.387871"/>
+      <trkpt lat="38.921469" lon="-110.389803"/>
+      <trkpt lat="38.921426" lon="-110.391605"/>
+      <trkpt lat="38.921554" lon="-110.393665"/>
+      <trkpt lat="38.921683" lon="-110.394824"/>
+      <trkpt lat="38.921984" lon="-110.396326"/>
+      <trkpt lat="38.924859" lon="-110.409887"/>
+      <trkpt lat="38.925074" lon="-110.411775"/>
+      <trkpt lat="38.925202" lon="-110.413277"/>
+      <trkpt lat="38.925202" lon="-110.414436"/>
+      <trkpt lat="38.925074" lon="-110.416668"/>
+      <trkpt lat="38.925444" lon="-110.416987"/>
+      <trkpt lat="38.925684" lon="-110.417258"/>
+      <trkpt lat="38.925773" lon="-110.417422"/>
+      <trkpt lat="38.925859" lon="-110.417518"/>
+    </trkseg>
+  </trk>
+</gpx>

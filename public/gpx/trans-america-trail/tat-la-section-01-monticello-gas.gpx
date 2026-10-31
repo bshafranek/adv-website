@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="mymaps_to_gpx"
+     xmlns="http://www.topografix.com/GPX/1/1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <name>TAT LA Section 1 Monticello Gas</name>
+    <trkseg>
+      <trkpt lat="37.875970" lon="-109.439618"/>
+      <trkpt lat="37.875793" lon="-109.438327"/>
+      <trkpt lat="37.875150" lon="-109.434893"/>
+      <trkpt lat="37.874506" lon="-109.431245"/>
+      <trkpt lat="37.873948" lon="-109.428027"/>
+      <trkpt lat="37.873347" lon="-109.424937"/>
+      <trkpt lat="37.873004" lon="-109.423649"/>
+      <trkpt lat="37.872703" lon="-109.422663"/>
+      <trkpt lat="37.871502" lon="-109.420517"/>
+      <trkpt lat="37.871244" lon="-109.419744"/>
+      <trkpt lat="37.870944" lon="-109.418457"/>
+      <trkpt lat="37.870129" lon="-109.412921"/>
+      <trkpt lat="37.870000" lon="-109.411032"/>
+      <trkpt lat="37.869699" lon="-109.402449"/>
+      <trkpt lat="37.869614" lon="-109.397385"/>
+      <trkpt lat="37.869141" lon="-109.383438"/>
+      <trkpt lat="37.869141" lon="-109.382708"/>
+      <trkpt lat="37.869141" lon="-109.377859"/>
+      <trkpt lat="37.869099" lon="-109.371593"/>
+      <trkpt lat="37.869099" lon="-109.371078"/>
+      <trkpt lat="37.869013" lon="-109.370649"/>
+      <trkpt lat="37.868669" lon="-109.369233"/>
+      <trkpt lat="37.868669" lon="-109.368932"/>
+      <trkpt lat="37.868970" lon="-109.366443"/>
+      <trkpt lat="37.869013" lon="-109.366143"/>
+      <trkpt lat="37.869056" lon="-109.364426"/>
+      <trkpt lat="37.868841" lon="-109.360264"/>
+      <trkpt lat="37.868884" lon="-109.359663"/>
+      <trkpt lat="37.868927" lon="-109.359105"/>
+      <trkpt lat="37.869399" lon="-109.357603"/>
+      <trkpt lat="37.869442" lon="-109.357259"/>
+      <trkpt lat="37.869399" lon="-109.356530"/>
+      <trkpt lat="37.869227" lon="-109.355672"/>
+      <trkpt lat="37.869227" lon="-109.355115"/>
+      <trkpt lat="37.869227" lon="-109.354727"/>
+      <trkpt lat="37.869227" lon="-109.353912"/>
+      <trkpt lat="37.869227" lon="-109.353097"/>
+      <trkpt lat="37.869227" lon="-109.352925"/>
+      <trkpt lat="37.869227" lon="-109.352110"/>
+      <trkpt lat="37.869227" lon="-109.351809"/>
+      <trkpt lat="37.869227" lon="-109.351123"/>
+      <trkpt lat="37.869227" lon="-109.348848"/>
+      <trkpt lat="37.869270" lon="-109.348161"/>
+      <trkpt lat="37.869313" lon="-109.348033"/>
+      <trkpt lat="37.869828" lon="-109.347518"/>
+      <trkpt lat="37.869828" lon="-109.346531"/>
+      <trkpt lat="37.869742" lon="-109.344728"/>
+      <trkpt lat="37.869742" lon="-109.343741"/>
+      <trkpt lat="37.869742" lon="-109.342926"/>
+      <trkpt lat="37.871201" lon="-109.342883"/>
+      <trkpt lat="37.872618" lon="-109.342883"/>
+    </trkseg>
+  </trk>
+</gpx>

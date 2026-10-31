@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="mymaps_to_gpx"
+     xmlns="http://www.topografix.com/GPX/1/1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <name>TAT LA Section 2 Hite Gas</name>
+    <trkseg>
+      <trkpt lat="37.877826" lon="-110.351349"/>
+      <trkpt lat="37.878359" lon="-110.352014"/>
+      <trkpt lat="37.878836" lon="-110.352640"/>
+      <trkpt lat="37.879189" lon="-110.353127"/>
+      <trkpt lat="37.879427" lon="-110.353468"/>
+      <trkpt lat="37.879753" lon="-110.353981"/>
+      <trkpt lat="37.879858" lon="-110.354142"/>
+      <trkpt lat="37.880178" lon="-110.354645"/>
+      <trkpt lat="37.880223" lon="-110.354728"/>
+      <trkpt lat="37.880209" lon="-110.354857"/>
+      <trkpt lat="37.880144" lon="-110.354952"/>
+      <trkpt lat="37.880016" lon="-110.355157"/>
+      <trkpt lat="37.879935" lon="-110.355309"/>
+      <trkpt lat="37.879765" lon="-110.355949"/>
+      <trkpt lat="37.879746" lon="-110.356201"/>
+      <trkpt lat="37.879718" lon="-110.356730"/>
+      <trkpt lat="37.879705" lon="-110.357278"/>
+      <trkpt lat="37.879695" lon="-110.357837"/>
+      <trkpt lat="37.879679" lon="-110.358403"/>
+      <trkpt lat="37.879668" lon="-110.358703"/>
+      <trkpt lat="37.879660" lon="-110.359008"/>
+      <trkpt lat="37.879628" lon="-110.360269"/>
+      <trkpt lat="37.879610" lon="-110.360905"/>
+      <trkpt lat="37.879576" lon="-110.362237"/>
+      <trkpt lat="37.879567" lon="-110.362567"/>
+      <trkpt lat="37.879539" lon="-110.363849"/>
+      <trkpt lat="37.879534" lon="-110.365082"/>
+      <trkpt lat="37.879533" lon="-110.365378"/>
+      <trkpt lat="37.879571" lon="-110.366503"/>
+      <trkpt lat="37.879685" lon="-110.367042"/>
+      <trkpt lat="37.879816" lon="-110.367582"/>
+      <trkpt lat="37.880059" lon="-110.368664"/>
+      <trkpt lat="37.880086" lon="-110.369181"/>
+      <trkpt lat="37.879859" lon="-110.370613"/>
+      <trkpt lat="37.879598" lon="-110.372307"/>
+      <trkpt lat="37.879566" lon="-110.372587"/>
+      <trkpt lat="37.879517" lon="-110.373129"/>
+      <trkpt lat="37.879435" lon="-110.373907"/>
+      <trkpt lat="37.879175" lon="-110.374824"/>
+      <trkpt lat="37.878965" lon="-110.375225"/>
+      <trkpt lat="37.878595" lon="-110.376102"/>
+      <trkpt lat="37.878411" lon="-110.376581"/>
+      <trkpt lat="37.878200" lon="-110.377040"/>
+      <trkpt lat="37.877988" lon="-110.377498"/>
+      <trkpt lat="37.877782" lon="-110.377938"/>
+      <trkpt lat="37.877685" lon="-110.378167"/>
+      <trkpt lat="37.877411" lon="-110.378834"/>
+      <trkpt lat="37.877240" lon="-110.379279"/>
+      <trkpt lat="37.877051" lon="-110.379935"/>
+      <trkpt lat="37.876978" lon="-110.380343"/>
+      <trkpt lat="37.876944" lon="-110.380737"/>
+      <trkpt lat="37.876966" lon="-110.381107"/>
+      <trkpt lat="37.877040" lon="-110.381996"/>
+      <trkpt lat="37.877057" lon="-110.382652"/>
+      <trkpt lat="37.876964" lon="-110.383183"/>
+      <trkpt lat="37.876819" lon="-110.383512"/>
+      <trkpt lat="37.876681" lon="-110.383870"/>
+      <trkpt lat="37.876655" lon="-110.383937"/>
+      <trkpt lat="37.876629" lon="-110.383971"/>
+      <trkpt lat="37.876627" lon="-110.384047"/>
+      <trkpt lat="37.876618" lon="-110.384100"/>
+    </trkseg>
+  </trk>
+</gpx>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="mymaps_to_gpx"
+     xmlns="http://www.topografix.com/GPX/1/1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <name>TAT Section 21 Hard</name>
+    <trkseg>
+      <trkpt lat="36.731866" lon="-95.539538"/>
+      <trkpt lat="36.731996" lon="-95.539548"/>
+      <trkpt lat="36.732106" lon="-95.539528"/>
+      <trkpt lat="36.732456" lon="-95.539428"/>
+      <trkpt lat="36.732776" lon="-95.539188"/>
+      <trkpt lat="36.733196" lon="-95.538978"/>
+      <trkpt lat="36.733496" lon="-95.538998"/>
+      <trkpt lat="36.733576" lon="-95.539008"/>
+      <trkpt lat="36.734106" lon="-95.539128"/>
+      <trkpt lat="36.735606" lon="-95.539458"/>
+      <trkpt lat="36.736456" lon="-95.539538"/>
+      <trkpt lat="36.736876" lon="-95.539588"/>
+      <trkpt lat="36.738106" lon="-95.539548"/>
+      <trkpt lat="36.743096" lon="-95.539688"/>
+      <trkpt lat="36.744726" lon="-95.539858"/>
+      <trkpt lat="36.745636" lon="-95.539828"/>
+      <trkpt lat="36.746316" lon="-95.539598"/>
+      <trkpt lat="36.749696" lon="-95.539608"/>
+      <trkpt lat="36.753066" lon="-95.539578"/>
+      <trkpt lat="36.753986" lon="-95.539628"/>
+      <trkpt lat="36.754536" lon="-95.539738"/>
+      <trkpt lat="36.755696" lon="-95.540158"/>
+      <trkpt lat="36.755976" lon="-95.540138"/>
+      <trkpt lat="36.756686" lon="-95.540208"/>
+      <trkpt lat="36.756956" lon="-95.540238"/>
+      <trkpt lat="36.757246" lon="-95.540248"/>
+      <trkpt lat="36.757456" lon="-95.540218"/>
+      <trkpt lat="36.757646" lon="-95.540178"/>
+      <trkpt lat="36.758336" lon="-95.539918"/>
+      <trkpt lat="36.758716" lon="-95.539768"/>
+    </trkseg>
+  </trk>
+</gpx>

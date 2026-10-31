@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="mymaps_to_gpx"
+     xmlns="http://www.topografix.com/GPX/1/1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <name>TAT Section 45 Easy 3</name>
+    <trkseg>
+      <trkpt lat="42.822126" lon="-121.000915"/>
+      <trkpt lat="42.822721" lon="-121.001879"/>
+      <trkpt lat="42.822951" lon="-121.002339"/>
+      <trkpt lat="42.823281" lon="-121.002889"/>
+      <trkpt lat="42.823451" lon="-121.003139"/>
+      <trkpt lat="42.823801" lon="-121.003549"/>
+      <trkpt lat="42.824541" lon="-121.004309"/>
+      <trkpt lat="42.825561" lon="-121.005239"/>
+      <trkpt lat="42.826131" lon="-121.005769"/>
+      <trkpt lat="42.826461" lon="-121.006089"/>
+      <trkpt lat="42.826961" lon="-121.006509"/>
+      <trkpt lat="42.827541" lon="-121.007039"/>
+      <trkpt lat="42.828101" lon="-121.007559"/>
+      <trkpt lat="42.828791" lon="-121.008269"/>
+      <trkpt lat="42.829541" lon="-121.008839"/>
+      <trkpt lat="42.830581" lon="-121.009449"/>
+      <trkpt lat="42.831101" lon="-121.009809"/>
+      <trkpt lat="42.831661" lon="-121.010189"/>
+      <trkpt lat="42.832431" lon="-121.010619"/>
+      <trkpt lat="42.833521" lon="-121.011319"/>
+      <trkpt lat="42.834701" lon="-121.012079"/>
+      <trkpt lat="42.835061" lon="-121.012309"/>
+      <trkpt lat="42.835631" lon="-121.012789"/>
+      <trkpt lat="42.836071" lon="-121.013139"/>
+      <trkpt lat="42.836441" lon="-121.013459"/>
+      <trkpt lat="42.837271" lon="-121.014329"/>
+      <trkpt lat="42.838101" lon="-121.015179"/>
+      <trkpt lat="42.838561" lon="-121.015659"/>
+      <trkpt lat="42.838841" lon="-121.015889"/>
+      <trkpt lat="42.841241" lon="-121.017079"/>
+      <trkpt lat="42.844081" lon="-121.018639"/>
+      <trkpt lat="42.844931" lon="-121.019069"/>
+      <trkpt lat="42.847201" lon="-121.020229"/>
+      <trkpt lat="42.848701" lon="-121.020999"/>
+      <trkpt lat="42.849941" lon="-121.021719"/>
+      <trkpt lat="42.850511" lon="-121.022089"/>
+      <trkpt lat="42.854221" lon="-121.024469"/>
+      <trkpt lat="42.856151" lon="-121.025709"/>
+      <trkpt lat="42.856681" lon="-121.026019"/>
+      <trkpt lat="42.856891" lon="-121.026209"/>
+      <trkpt lat="42.857112" lon="-121.026115"/>
+      <trkpt lat="42.857309" lon="-121.026017"/>
+    </trkseg>
+  </trk>
+</gpx>
