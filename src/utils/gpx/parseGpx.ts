@@ -43,7 +43,7 @@ export async function parseGpx(source: string | File): Promise<GpxParseResult> {
     t.points.map((p) => ({
       lat: p.latitude,
       lon: p.longitude,
-      elevation: p.elevation,
+      elevation: p.elevation ?? null,
       time: p.time ? p.time.toISOString() : null,
     })),
   );
@@ -51,10 +51,10 @@ export async function parseGpx(source: string | File): Promise<GpxParseResult> {
   const waypoints: GpxWaypoint[] = parsed.waypoints.map((w) => ({
     lat: w.latitude,
     lon: w.longitude,
-    elevation: w.elevation,
-    name: w.name,
-    description: w.description,
-    comment: w.comment,
+    elevation: w.elevation ?? null,
+    name: w.name ?? null,
+    description: w.description ?? null,
+    comment: w.comment ?? null,
   }));
 
   return { points, waypoints, errors: [] };

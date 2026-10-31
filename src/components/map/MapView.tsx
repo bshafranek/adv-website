@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react';
-import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Polyline, Marker, Popup } from 'react-leaflet';
 import type { LatLngExpression } from 'leaflet';
 import { BASEMAPS } from '../../constants/basemaps';
 import { BasemapControl } from './BasemapControl';
 import { AutoFitBounds } from './AutoFitBounds';
+import { WaypointPopup } from '../waypoints/WaypointPopup';
 import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
 import { useGpxRoutes, type RouteRef } from '../../hooks/useGpxRoutes';
@@ -11,10 +12,9 @@ import { useGpxRoutes, type RouteRef } from '../../hooks/useGpxRoutes';
 const DEFAULT_CENTER: LatLngExpression = [39.8, -98.6];
 const DEFAULT_ZOOM = 4;
 
-// TODO: waypoint markers/popups and per-route loading-state indicators are a
-// separate feature; very large tracks (100k+ points) also parse/render on the
-// main thread for now, which can be slow until parsing moves to a worker and
-// polylines get simplified.
+// TODO: per-route loading-state indicators are a separate feature; very large
+// tracks (100k+ points) also parse/render on the main thread for now, which
+// can be slow until parsing moves to a worker and polylines get simplified.
 export function MapView() {
   const [activeBasemapId, setActiveBasemapId] = useState(BASEMAPS[0].id);
   const activeBasemap = BASEMAPS.find((b) => b.id === activeBasemapId) ?? BASEMAPS[0];
@@ -74,6 +74,15 @@ export function MapView() {
               pathOptions={{ color: r.color, weight: 3 }}
             />
           ))}
+        {visibleRoutes.flatMap((route) =>
+          (routeData[route.id]?.waypoints ?? []).map((wp, i) => (
+            <Marker key={`${route.id}-wp-${i}`} position={[wp.lat, wp.lon]}>
+              <Popup>
+                <WaypointPopup waypoint={wp} />
+              </Popup>
+            </Marker>
+          )),
+        )}
         <AutoFitBounds positions={allPositions as [number, number][]} />
       </MapContainer>
     </div>
