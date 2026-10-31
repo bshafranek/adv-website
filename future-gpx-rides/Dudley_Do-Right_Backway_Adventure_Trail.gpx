@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="mymaps_to_gpx"
+     xmlns="http://www.topografix.com/GPX/1/1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <name>Dudley Do-Right Backway Adventure Trail</name>
+    <trkseg>
+      <trkpt lat="49.028561" lon="-119.454838"/>
+      <trkpt lat="49.098799" lon="-119.676447"/>
+      <trkpt lat="49.222205" lon="-119.634224"/>
+      <trkpt lat="49.440641" lon="-119.733839"/>
+      <trkpt lat="49.394690" lon="-119.947385"/>
+      <trkpt lat="49.335847" lon="-120.030345"/>
+      <trkpt lat="49.379224" lon="-120.164001"/>
+      <trkpt lat="49.299769" lon="-120.271572"/>
+      <trkpt lat="49.278440" lon="-120.284768"/>
+      <trkpt lat="49.360773" lon="-120.442500"/>
+      <trkpt lat="49.302501" lon="-120.507234"/>
+      <trkpt lat="49.189215" lon="-120.561736"/>
+      <trkpt lat="49.459867" lon="-120.507553"/>
+      <trkpt lat="49.543061" lon="-120.757856"/>
+      <trkpt lat="49.771542" lon="-120.771847"/>
+      <trkpt lat="49.809973" lon="-120.702367"/>
+      <trkpt lat="49.796305" lon="-120.793366"/>
+      <trkpt lat="49.798387" lon="-120.804669"/>
+      <trkpt lat="49.835004" lon="-120.919827"/>
+      <trkpt lat="49.925499" lon="-120.958522"/>
+      <trkpt lat="49.977340" lon="-121.077084"/>
+      <trkpt lat="49.856993" lon="-121.119528"/>
+      <trkpt lat="49.790898" lon="-121.353258"/>
+      <trkpt lat="49.978741" lon="-121.515986"/>
+      <trkpt lat="50.011661" lon="-121.639942"/>
+      <trkpt lat="49.844800" lon="-121.749045"/>
+      <trkpt lat="49.782178" lon="-121.863702"/>
+      <trkpt lat="49.383416" lon="-121.743285"/>
+      <trkpt lat="49.247287" lon="-121.783093"/>
+      <trkpt lat="49.391587" lon="-121.459313"/>
+      <trkpt lat="49.629947" lon="-121.392933"/>
+      <trkpt lat="50.240047" lon="-121.593113"/>
+      <trkpt lat="50.754657" lon="-121.936403"/>
+      <trkpt lat="50.857447" lon="-122.195133"/>
+      <trkpt lat="50.738887" lon="-122.215653"/>
+      <trkpt lat="50.623207" lon="-122.459743"/>
+      <trkpt lat="50.509197" lon="-122.508633"/>
+      <trkpt lat="50.444577" lon="-122.692353"/>
+      <trkpt lat="50.309807" lon="-122.725783"/>
+      <trkpt lat="50.323396" lon="-122.807529"/>
+      <trkpt lat="50.502827" lon="-122.967566"/>
+      <trkpt lat="50.544129" lon="-123.075383"/>
+      <trkpt lat="50.547443" lon="-123.086498"/>
+      <trkpt lat="50.547487" lon="-123.086521"/>
+      <trkpt lat="50.640920" lon="-123.042708"/>
+      <trkpt lat="50.782090" lon="-122.841097"/>
+      <trkpt lat="50.775955" lon="-122.819355"/>
+      <trkpt lat="50.875856" lon="-122.830438"/>
+      <trkpt lat="50.906617" lon="-122.741373"/>
+      <trkpt lat="50.782562" lon="-122.242238"/>
+      <trkpt lat="50.792314" lon="-122.176196"/>
+      <trkpt lat="50.863717" lon="-122.155193"/>
+      <trkpt lat="50.751227" lon="-121.873713"/>
+      <trkpt lat="50.972317" lon="-121.923693"/>
+      <trkpt lat="51.139357" lon="-122.154383"/>
+      <trkpt lat="51.201647" lon="-122.099143"/>
+      <trkpt lat="51.114797" lon="-122.022263"/>
+      <trkpt lat="51.012887" lon="-121.769313"/>
+      <trkpt lat="51.135144" lon="-121.500196"/>
+      <trkpt lat="51.234884" lon="-121.482916"/>
+      <trkpt lat="51.188300" lon="-121.103342"/>
+      <trkpt lat="51.138922" lon="-121.110232"/>
+      <trkpt lat="51.090308" lon="-120.936983"/>
+      <trkpt lat="51.027933" lon="-120.902821"/>
+      <trkpt lat="51.168429" lon="-120.908095"/>
+      <trkpt lat="51.145914" lon="-120.803306"/>
+      <trkpt lat="50.982996" lon="-120.679722"/>
+      <trkpt lat="50.901781" lon="-120.617398"/>
+      <trkpt lat="50.830589" lon="-120.447510"/>
+      <trkpt lat="50.779437" lon="-120.432866"/>
+      <trkpt lat="50.708619" lon="-120.365698"/>
+      <trkpt lat="50.756177" lon="-120.132543"/>
+      <trkpt lat="50.687837" lon="-119.852303"/>
+      <trkpt lat="50.821417" lon="-119.717653"/>
+      <trkpt lat="50.870914" lon="-119.577276"/>
+      <trkpt lat="50.902674" lon="-119.589126"/>
+      <trkpt lat="51.005064" lon="-119.054226"/>
+      <trkpt lat="51.209787" lon="-119.021433"/>
+      <trkpt lat="51.246447" lon="-118.906383"/>
+      <trkpt lat="51.350087" lon="-118.904783"/>
+      <trkpt lat="51.357327" lon="-118.830833"/>
+      <trkpt lat="51.090037" lon="-118.868793"/>
+      <trkpt lat="50.969603" lon="-118.731398"/>
+      <trkpt lat="50.977254" lon="-118.528996"/>
+      <trkpt lat="50.908734" lon="-118.474536"/>
+      <trkpt lat="50.850164" lon="-118.567806"/>
+      <trkpt lat="50.293444" lon="-118.804296"/>
+      <trkpt lat="50.254354" lon="-118.969876"/>
+      <trkpt lat="50.210191" lon="-118.567109"/>
+      <trkpt lat="50.112281" lon="-118.506489"/>
+      <trkpt lat="49.946321" lon="-118.685979"/>
+      <trkpt lat="49.057417" lon="-119.000003"/>
+      <trkpt lat="49.047547" lon="-119.120053"/>
+      <trkpt lat="49.115617" lon="-119.179283"/>
+      <trkpt lat="49.109877" lon="-119.336593"/>
+      <trkpt lat="49.199257" lon="-119.496183"/>
+      <trkpt lat="49.125857" lon="-119.562793"/>
+      <trkpt lat="49.028377" lon="-119.454803"/>
+    </trkseg>
+  </trk>
+</gpx>
