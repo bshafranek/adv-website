@@ -54,7 +54,13 @@ export function ViewerPage() {
       }
     >
       <CollapsiblePanel title="Ride Summary" defaultOpen={false}>
-        <SummaryCards stats={stats} />
+        {activeRoute ? (
+          <SummaryCards stats={stats} />
+        ) : (
+          <p className="px-4 py-4 text-sm text-gray-500">
+            Select a route in the sidebar to see its ride summary.
+          </p>
+        )}
       </CollapsiblePanel>
       <div className="min-h-0 flex-1 p-4">
         <MapView cursorPosition={cursorPosition} flyToTarget={flyToTarget} />

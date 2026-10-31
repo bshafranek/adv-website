@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Polyline, Marker, Popup, CircleMarker } from '
 import type { LatLngExpression, Polyline as LeafletPolyline } from 'leaflet';
 import { BASEMAPS } from '../../constants/basemaps';
 import { BasemapControl } from './BasemapControl';
+import { FullscreenButton } from './FullscreenButton';
 import { FitBoundsControl } from './FitBoundsControl';
 import { MapResizeHandler } from './MapResizeHandler';
 import { MapFlyTo } from './MapFlyTo';
@@ -88,10 +89,18 @@ export function MapView({
     });
   }, [visibleRoutes, routeData]);
 
+  const mapWrapperRef = useRef<HTMLDivElement>(null);
+
   return (
-    <div className="relative h-full min-h-72 w-full overflow-hidden rounded-lg border border-border">
+    <div
+      ref={mapWrapperRef}
+      className="relative h-full min-h-72 w-full overflow-hidden rounded-lg border border-border"
+    >
       <div className="absolute right-3 top-3 z-[1000]">
         <BasemapControl activeId={activeBasemapId} onChange={setActiveBasemapId} />
+      </div>
+      <div className="absolute bottom-3 right-3 z-[1000]">
+        <FullscreenButton targetRef={mapWrapperRef} />
       </div>
       <MapContainer
         center={DEFAULT_CENTER}

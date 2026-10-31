@@ -35,27 +35,18 @@ export function RouteListItem({
           {route.title}
         </button>
       </div>
-      <div className="flex items-center gap-2">
-        <label
-          title="Change route color"
-          className="relative inline-block h-3 w-3 cursor-pointer rounded-full border border-border"
-          style={{ backgroundColor: color }}
-        >
-          <input
-            type="color"
-            value={color}
-            onChange={(e) => onColorChange(e.target.value)}
-            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-          />
-        </label>
-        <a
-          href={`${import.meta.env.BASE_URL}${route.file}`}
-          download={`${route.id}.gpx`}
-          className="rounded-md bg-surface-raised px-2 py-0.5 text-xs text-gray-100 transition-colors hover:bg-accent hover:text-black"
-        >
-          GPX
-        </a>
-      </div>
+      <label
+        title="Change route color"
+        className="relative inline-block h-3 w-3 shrink-0 cursor-pointer rounded-full border border-border"
+        style={{ backgroundColor: color }}
+      >
+        <input
+          type="color"
+          value={color}
+          onChange={(e) => onColorChange(e.target.value)}
+          className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+        />
+      </label>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { ViewerPage } from './pages/ViewerPage';
 import { StatusPage } from './pages/StatusPage';
 import { AboutPage } from './pages/AboutPage';
 import { HowToUsePage } from './pages/HowToUsePage';
+import { DownloadPage } from './pages/DownloadPage';
 import { TripCollectionsProvider } from './context/TripCollectionsContext';
 import { GpxStatusProvider } from './context/GpxStatusContext';
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/status" element={<StatusPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/how-to-use" element={<HowToUsePage />} />
+          <Route path="/download" element={<DownloadPage />} />
         </Routes>
       </TripCollectionsProvider>
     </GpxStatusProvider>

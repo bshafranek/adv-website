@@ -63,7 +63,8 @@ export function HowToUsePage() {
         <section>
           <h2 className="font-semibold text-gray-100">Downloading GPX files</h2>
           <p>
-            Click the GPX button next to any route in the sidebar to download its raw .gpx file.
+            Open <strong>Download</strong> from the ☰ menu to grab raw .gpx files — download an
+            entire collection at once as a .zip, or an individual route's file directly.
           </p>
         </section>
       </div>

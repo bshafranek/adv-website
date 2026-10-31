@@ -19,6 +19,7 @@ function HamburgerIcon() {
 
 const MENU_LINKS = [
   { to: '/status', label: 'App Status' },
+  { to: '/download', label: 'Download' },
   { to: '/how-to-use', label: 'How to Use' },
   { to: '/about', label: 'About' },
 ];

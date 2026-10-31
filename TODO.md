@@ -23,9 +23,24 @@ to `true`. `MapView` filters waypoint markers on this flag separately from
 the polyline rendering. Lives **only in `ActiveLayersList`**, not in the
 sidebar's `RouteListItem` browse list (removed from there per feedback).
 
-## Active Layers list should stay visible while scrolling
+## ~~Active Layers list should stay visible while scrolling~~ — done
 
-When the route browse list (below Active Layers in the sidebar) gets long
-and scrolls, Active Layers should stay pinned/visible at the top instead of
-scrolling out of view — likely `position: sticky` on its wrapper within the
-sidebar's scroll container.
+Its wrapper in `ViewerPage` is `sticky top-0` within the sidebar's scroll
+container, with its own `bg-surface` so scrolled content doesn't show
+through underneath it.
+
+## ~~Hide Ride Summary cards when no route is selected~~ — done
+
+`ViewerPage` now shows the same placeholder pattern as Elevation Profile:
+"Select a route in the sidebar to see its ride summary" when
+`activeRoute` is null, instead of always rendering zeroed-out stats.
+
+## Maybe rename the app
+
+"Brent's Adventures" feels off since the app mixes rides already done with
+rides only planned ("Past, Present and Future" as a subtitle didn't land
+either). Candidates to revisit, undecided:
+
+- **Waypoints** — short, on-theme, doesn't imply past or future
+- **Brent's Route Book** — real rally/ADV term for a collection of routes
+- **Brent's Ride Atlas** — leans into the map/collection angle
