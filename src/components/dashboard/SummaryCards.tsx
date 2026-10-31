@@ -1,18 +1,29 @@
 import type { GpxStats } from '../../utils/gpx/gpxStats';
+import { metersToFeet, metersToMiles, metersPerSecondToMph } from '../../utils/units';
+import { formatNumber, formatDuration } from '../../utils/format';
 import { Card } from '../common/Card';
 
 export function SummaryCards({ stats }: { stats: GpxStats }) {
   const cards = [
-    { title: 'Distance', value: `${(stats.totalDistanceMeters / 1000).toFixed(1)} km` },
-    { title: 'Moving Time', value: `${Math.round(stats.movingTimeSeconds / 60)} min` },
-    { title: 'Elevation Gain', value: `${stats.elevationGainMeters.toFixed(0)} m` },
-    { title: 'Elevation Loss', value: `${stats.elevationLossMeters.toFixed(0)} m` },
-    { title: 'Max Speed', value: `${(stats.maxSpeedMetersPerSecond * 3.6).toFixed(0)} km/h` },
+    { title: 'Distance', value: `${formatNumber(metersToMiles(stats.totalDistanceMeters), 1)} mi` },
+    { title: 'Moving Time', value: formatDuration(stats.movingTimeSeconds) },
+    {
+      title: 'Elevation Gain',
+      value: `${formatNumber(metersToFeet(stats.elevationGainMeters))} ft`,
+    },
+    {
+      title: 'Elevation Loss',
+      value: `${formatNumber(metersToFeet(stats.elevationLossMeters))} ft`,
+    },
+    {
+      title: 'Max Speed',
+      value: `${formatNumber(metersPerSecondToMph(stats.maxSpeedMetersPerSecond))} mph`,
+    },
     {
       title: 'Min / Max Altitude',
       value:
         stats.minAltitudeMeters !== null && stats.maxAltitudeMeters !== null
-          ? `${stats.minAltitudeMeters.toFixed(0)} / ${stats.maxAltitudeMeters.toFixed(0)} m`
+          ? `${formatNumber(metersToFeet(stats.minAltitudeMeters))} / ${formatNumber(metersToFeet(stats.maxAltitudeMeters))} ft`
           : '—',
     },
   ];

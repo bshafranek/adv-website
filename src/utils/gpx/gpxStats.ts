@@ -1,4 +1,5 @@
 import type { GpxTrackPoint } from '../../types/gpx';
+import { haversineDistance } from './geo';
 
 export interface GpxStats {
   totalDistanceMeters: number;
@@ -10,16 +11,58 @@ export interface GpxStats {
   maxAltitudeMeters: number | null;
 }
 
-// TODO: derive real stats from consecutive GpxTrackPoint pairs (haversine distance,
-// elevation delta accumulation, speed from distance/time).
-export function computeGpxStats(_points: GpxTrackPoint[]): GpxStats {
+// A segment counts toward "moving time" only if its average speed is above
+// this threshold — filters out stops/idling without needing GPS-noise-aware
+// stop detection.
+const MOVING_SPEED_THRESHOLD_MPS = 0.5;
+
+export function computeGpxStats(points: GpxTrackPoint[]): GpxStats {
+  let totalDistanceMeters = 0;
+  let movingTimeSeconds = 0;
+  let elevationGainMeters = 0;
+  let elevationLossMeters = 0;
+  let maxSpeedMetersPerSecond = 0;
+  let minAltitudeMeters: number | null = null;
+  let maxAltitudeMeters: number | null = null;
+
+  for (let i = 0; i < points.length; i++) {
+    const point = points[i];
+
+    if (point.elevation !== null) {
+      minAltitudeMeters =
+        minAltitudeMeters === null ? point.elevation : Math.min(minAltitudeMeters, point.elevation);
+      maxAltitudeMeters =
+        maxAltitudeMeters === null ? point.elevation : Math.max(maxAltitudeMeters, point.elevation);
+    }
+
+    if (i === 0) continue;
+    const prev = points[i - 1];
+    const segmentDistanceMeters = haversineDistance(prev.lat, prev.lon, point.lat, point.lon);
+    totalDistanceMeters += segmentDistanceMeters;
+
+    if (prev.elevation !== null && point.elevation !== null) {
+      const delta = point.elevation - prev.elevation;
+      if (delta > 0) elevationGainMeters += delta;
+      else elevationLossMeters += -delta;
+    }
+
+    if (prev.time && point.time) {
+      const seconds = (new Date(point.time).getTime() - new Date(prev.time).getTime()) / 1000;
+      if (seconds > 0) {
+        const speed = segmentDistanceMeters / seconds;
+        if (speed > maxSpeedMetersPerSecond) maxSpeedMetersPerSecond = speed;
+        if (speed > MOVING_SPEED_THRESHOLD_MPS) movingTimeSeconds += seconds;
+      }
+    }
+  }
+
   return {
-    totalDistanceMeters: 0,
-    movingTimeSeconds: 0,
-    elevationGainMeters: 0,
-    elevationLossMeters: 0,
-    maxSpeedMetersPerSecond: 0,
-    minAltitudeMeters: null,
-    maxAltitudeMeters: null,
+    totalDistanceMeters,
+    movingTimeSeconds,
+    elevationGainMeters,
+    elevationLossMeters,
+    maxSpeedMetersPerSecond,
+    minAltitudeMeters,
+    maxAltitudeMeters,
   };
 }

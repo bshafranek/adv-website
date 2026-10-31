@@ -1,9 +1,11 @@
 import { useMemo, useState } from 'react';
-import { MapContainer, TileLayer, Polyline, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Polyline, Marker, Popup, CircleMarker } from 'react-leaflet';
 import type { LatLngExpression } from 'leaflet';
 import { BASEMAPS } from '../../constants/basemaps';
 import { BasemapControl } from './BasemapControl';
 import { AutoFitBounds } from './AutoFitBounds';
+import { MapResizeHandler } from './MapResizeHandler';
+import { MapFlyTo } from './MapFlyTo';
 import { WaypointPopup } from '../waypoints/WaypointPopup';
 import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
@@ -15,25 +17,43 @@ const DEFAULT_ZOOM = 4;
 // TODO: per-route loading-state indicators are a separate feature; very large
 // tracks (100k+ points) also parse/render on the main thread for now, which
 // can be slow until parsing moves to a worker and polylines get simplified.
-export function MapView() {
+export function MapView({
+  cursorPosition,
+  flyToTarget,
+}: {
+  cursorPosition?: [number, number] | null;
+  flyToTarget?: [number, number] | null;
+}) {
   const [activeBasemapId, setActiveBasemapId] = useState(BASEMAPS[0].id);
   const activeBasemap = BASEMAPS.find((b) => b.id === activeBasemapId) ?? BASEMAPS[0];
 
   const { manifest } = useManifest();
-  const { routeState } = useTripCollections();
+  const { routeState, routeOrder } = useTripCollections();
 
-  const visibleRoutes = useMemo(() => {
-    if (!manifest) return [];
-    return manifest.collections.flatMap((collection) =>
-      collection.routes
-        .filter((route) => routeState[route.id]?.visible)
-        .map((route) => ({
-          id: route.id,
+  const routeLookup = useMemo(() => {
+    const map = new Map<string, { file: string; color: string }>();
+    manifest?.collections.forEach((collection) => {
+      collection.routes.forEach((route) => {
+        map.set(route.id, {
           file: route.file,
           color: routeState[route.id]?.color ?? route.color ?? collection.defaultColor,
-        })),
-    );
+        });
+      });
+    });
+    return map;
   }, [manifest, routeState]);
+
+  // routeOrder[0] is the top of the stack (set by ActiveLayersList's drag
+  // reordering); reverse it so that route ends up rendered last, i.e. on top.
+  const visibleRoutes = useMemo(() => {
+    return [...routeOrder]
+      .reverse()
+      .map((id) => {
+        const info = routeLookup.get(id);
+        return info ? { id, file: info.file, color: info.color } : null;
+      })
+      .filter((route): route is { id: string; file: string; color: string } => route !== null);
+  }, [routeOrder, routeLookup]);
 
   const routeRefs = useMemo<RouteRef[]>(
     () => visibleRoutes.map(({ id, file }) => ({ id, file })),
@@ -41,15 +61,24 @@ export function MapView() {
   );
   const routeData = useGpxRoutes(routeRefs);
 
-  const polylinesByRoute = visibleRoutes.map((route) => ({
-    ...route,
-    positions: (routeData[route.id]?.points ?? []).map((p): LatLngExpression => [p.lat, p.lon]),
-  }));
+  // Memoized so AutoFitBounds only re-fits when the visible/loaded route set
+  // actually changes, not on every render (e.g. hover-driven cursor updates).
+  const polylinesByRoute = useMemo(
+    () =>
+      visibleRoutes.map((route) => ({
+        ...route,
+        positions: (routeData[route.id]?.points ?? []).map((p): LatLngExpression => [p.lat, p.lon]),
+      })),
+    [visibleRoutes, routeData],
+  );
 
-  const allPositions = polylinesByRoute.flatMap((r) => r.positions);
+  const allPositions = useMemo(
+    () => polylinesByRoute.flatMap((r) => r.positions),
+    [polylinesByRoute],
+  );
 
   return (
-    <div className="relative h-[32rem] w-full overflow-hidden rounded-lg border border-border">
+    <div className="relative h-full min-h-72 w-full overflow-hidden rounded-lg border border-border">
       <div className="absolute right-3 top-3 z-[1000]">
         <BasemapControl activeId={activeBasemapId} onChange={setActiveBasemapId} />
       </div>
@@ -83,7 +112,16 @@ export function MapView() {
             </Marker>
           )),
         )}
+        {cursorPosition && (
+          <CircleMarker
+            center={cursorPosition}
+            radius={7}
+            pathOptions={{ color: '#ffffff', weight: 2, fillColor: '#f97316', fillOpacity: 1 }}
+          />
+        )}
         <AutoFitBounds positions={allPositions as [number, number][]} />
+        <MapFlyTo target={flyToTarget ?? null} />
+        <MapResizeHandler />
       </MapContainer>
     </div>
   );
