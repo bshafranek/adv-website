@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: #0b1215;
+  --color-surface: #141c20;
+  --color-surface-raised: #1c262b;
+  --color-border: #2a363c;
+  --color-accent: #f97316;
+  --color-trail: #22c55e;
+}
+
+body {
+  @apply bg-background text-gray-100;
+}

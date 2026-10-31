@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "collections": [
+    {
+      "id": "example-collection",
+      "title": "Example Collection",
+      "description": "",
+      "defaultColor": "#22c55e",
+      "routes": [
+        {
+          "id": "example-route",
+          "title": "Example Route",
+          "date": "2026-01-01",
+          "collectionId": "example-collection",
+          "file": "gpx/example-collection/example-route.gpx",
+          "color": null
+        }
+      ]
+    }
+  ]
+}
