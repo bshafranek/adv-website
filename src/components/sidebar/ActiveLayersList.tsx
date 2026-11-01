@@ -105,7 +105,7 @@ export function ActiveLayersList() {
               />
               <button
                 type="button"
-                onClick={() => setActiveRoute(id)}
+                onClick={() => setActiveRoute(activeRouteId === id ? null : id)}
                 className={`flex-1 truncate text-left hover:text-accent ${
                   activeRouteId === id ? 'font-semibold text-accent' : 'text-gray-200'
                 }`}

@@ -13,9 +13,12 @@ export function HowToUsePage() {
           <h2 className="font-semibold text-gray-100">Showing routes</h2>
           <p>
             Check a route's box in the sidebar to add it to the map and the Active Layers list.
-            Click a route's title to select it as the active route for the elevation chart and ride
-            summary stats. Each collection also has its own checkbox next to its name that shows or
-            hides every route in that collection at once.
+            Click a route's title (in the sidebar or in Active Layers) to select it as the active
+            route for the elevation chart and ride summary stats — it also highlights on the map in
+            a distinct color so it's easy to pick out from the rest. Click its title again to
+            deselect it; its line goes back to its normal color, and it stays visible on the map.
+            Each collection also has its own checkbox next to its name that shows or hides every
+            route in that collection at once.
           </p>
         </section>
         <section>

@@ -21,6 +21,18 @@ export function CollectionList() {
   const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({});
   const [collapsedCollections, setCollapsedCollections] = useState<Record<string, boolean>>({});
 
+  // Clicking the already-active route's title deselects it (removes the map
+  // highlight) instead of re-selecting it; otherwise selects it and makes
+  // sure it's visible.
+  function handleSelect(routeId: string) {
+    if (activeRouteId === routeId) {
+      setActiveRoute(null);
+    } else {
+      setActiveRoute(routeId);
+      setRouteVisible(routeId, true);
+    }
+  }
+
   if (loading) return <p className="p-3 text-sm text-gray-500">Loading collections…</p>;
   if (error) return <p className="p-3 text-sm text-red-400">{error}</p>;
   if (!manifest) return null;
@@ -63,10 +75,7 @@ export function CollectionList() {
                   active={activeRouteId === route.id}
                   onToggleVisible={(visible) => setRouteVisible(route.id, visible)}
                   onColorChange={(color) => setRouteColor(route.id, color)}
-                  onSelect={() => {
-                    setActiveRoute(route.id);
-                    setRouteVisible(route.id, true);
-                  }}
+                  onSelect={() => handleSelect(route.id)}
                 />
               ))}
             {!groupCollapsed &&
@@ -130,10 +139,7 @@ export function CollectionList() {
                           active={activeRouteId === route.id}
                           onToggleVisible={(visible) => setRouteVisible(route.id, visible)}
                           onColorChange={(color) => setRouteColor(route.id, color)}
-                          onSelect={() => {
-                            setActiveRoute(route.id);
-                            setRouteVisible(route.id, true);
-                          }}
+                          onSelect={() => handleSelect(route.id)}
                         />
                       ))}
                   </div>
