@@ -21,11 +21,27 @@ const fs = require('fs');
 const path = require('path');
 const exifr = require('exifr');
 const sharp = require('sharp');
+const heicConvert = require('heic-convert');
 
 const MANIFEST_PATH = path.join(__dirname, '..', 'public', 'gpx', 'manifest.json');
 const PHOTO_EXTENSIONS = new Set(['.heic', '.heif', '.jpg', '.jpeg', '.png']);
+const HEIC_EXTENSIONS = new Set(['.heic', '.heif']);
 const THUMBNAIL_WIDTH = 400;
 const FULL_WIDTH = 1600;
+
+// sharp (libvips) doesn't ship with HEIC/HEVC decoding built in - that codec
+// is patent-encumbered, so prebuilt sharp binaries deliberately leave it out
+// (same reason Chrome/Firefox/Edge can't display HEIC images at all). Decode
+// HEIC/HEIF with heic-convert (a WASM libheif build with no such licensing
+// issue) into a plain JPEG buffer first, then hand that to sharp for the
+// actual resize/compress - sharp has no trouble with an already-JPEG buffer.
+async function loadAsSharpInput(filePath) {
+  const buffer = fs.readFileSync(filePath);
+  if (!HEIC_EXTENSIONS.has(path.extname(filePath).toLowerCase())) {
+    return buffer;
+  }
+  return heicConvert({ buffer, format: 'JPEG', quality: 0.92 });
+}
 
 function parseArgs(argv) {
   const positional = [];
@@ -112,17 +128,24 @@ async function main() {
     // internal chunked file reader hits a Node fs.promises.FileHandle.stat()
     // signature mismatch on newer Node versions when given a path string.
     const fileBuffer = fs.readFileSync(filePath);
-    const exif = await exifr.parse(fileBuffer, { gps: true, pick: ['DateTimeOriginal', 'CreateDate'] });
-    if (!exif || exif.latitude === undefined || exif.longitude === undefined) {
+    // Separate calls, not one combined { gps: true, pick: [...] } - exifr's
+    // `pick` option restricts output to just the picked tag names, which
+    // silently drops the computed latitude/longitude GPS fields even with
+    // gps: true also set.
+    const gps = await exifr.gps(fileBuffer).catch(() => null);
+    if (!gps || gps.latitude === undefined || gps.longitude === undefined) {
       console.warn(`  skipping ${filename} - no GPS data found`);
       continue;
     }
-    const takenAt = exif.DateTimeOriginal || exif.CreateDate || null;
+    const dateTags = await exifr
+      .parse(fileBuffer, { pick: ['DateTimeOriginal', 'CreateDate'] })
+      .catch(() => null);
+    const takenAt = dateTags?.DateTimeOriginal || dateTags?.CreateDate || null;
     photosRaw.push({
       filename,
       filePath,
-      lat: exif.latitude,
-      lon: exif.longitude,
+      lat: gps.latitude,
+      lon: gps.longitude,
       takenAt: takenAt ? new Date(takenAt).toISOString() : null,
       caption: captions[filename] ?? null,
     });
@@ -168,14 +191,15 @@ async function main() {
       const id = slugify(photo.filename) || `photo-${photoRefs.length + 1}`;
       const thumbName = `${id}-thumb.jpg`;
       const fullName = `${id}-full.jpg`;
+      const sharpInput = await loadAsSharpInput(photo.filePath);
 
-      await sharp(photo.filePath)
+      await sharp(sharpInput)
         .rotate() // apply EXIF orientation before resizing
         .resize({ width: THUMBNAIL_WIDTH })
         .jpeg({ quality: 75 })
         .toFile(path.join(outDir, thumbName));
 
-      await sharp(photo.filePath)
+      await sharp(sharpInput)
         .rotate()
         .resize({ width: FULL_WIDTH, withoutEnlargement: true })
         .jpeg({ quality: 82 })
