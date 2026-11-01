@@ -3,7 +3,7 @@ import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
 import { useGpxStatus } from '../../hooks/useGpxStatus';
 import { resolveRouteColor } from '../../utils/routeColor';
-import { LineIcon, PinIcon } from '../icons/LayerIcons';
+import { CameraIcon, LineIcon, PinIcon } from '../icons/LayerIcons';
 
 // routeOrder[0] is the top of the visual stack (rendered last/on top by
 // MapView). Dragging a row here reorders both the list and the map stacking.
@@ -18,19 +18,21 @@ export function ActiveLayersList() {
     setRoutesVisible,
     setWaypointsVisible,
     setLineVisible,
+    setPhotosVisible,
     setActiveRoute,
   } = useTripCollections();
   const [draggedId, setDraggedId] = useState<string | null>(null);
   const { processedFiles } = useGpxStatus();
 
   const routeLookup = useMemo(() => {
-    const map = new Map<string, { title: string; color: string; file: string }>();
+    const map = new Map<string, { title: string; color: string; file: string; hasPhotos: boolean }>();
     manifest?.groups.forEach((group) => {
       group.routes?.forEach((route) => {
         map.set(route.id, {
           title: route.title,
           color: resolveRouteColor(route.id, route, routeState, group.defaultColor ?? '#3b82f6'),
           file: route.file,
+          hasPhotos: (route.photos?.length ?? 0) > 0,
         });
       });
       group.collections.forEach((collection) => {
@@ -39,6 +41,7 @@ export function ActiveLayersList() {
             title: route.title,
             color: resolveRouteColor(route.id, route, routeState, collection.defaultColor),
             file: route.file,
+            hasPhotos: (route.photos?.length ?? 0) > 0,
           });
         });
       });
@@ -81,6 +84,7 @@ export function ActiveLayersList() {
           if (!info) return null;
           const lineVisible = routeState[id]?.lineVisible ?? true;
           const waypointsVisible = routeState[id]?.waypointsVisible ?? true;
+          const photosVisible = routeState[id]?.photosVisible ?? true;
           // Default to true (assume it might have waypoints) until the file
           // actually finishes parsing, so the icon doesn't flash disabled.
           const hasWaypoints = (processedFiles[info.file]?.waypointCount ?? 1) > 0;
@@ -143,6 +147,27 @@ export function ActiveLayersList() {
                 }
               >
                 <PinIcon />
+              </button>
+              <button
+                type="button"
+                onClick={() => info.hasPhotos && setPhotosVisible(id, !photosVisible)}
+                disabled={!info.hasPhotos}
+                title={
+                  !info.hasPhotos
+                    ? 'This route has no photos'
+                    : photosVisible
+                      ? 'Hide photos'
+                      : 'Show photos'
+                }
+                className={
+                  !info.hasPhotos
+                    ? 'cursor-not-allowed text-gray-300 dark:text-gray-700'
+                    : photosVisible
+                      ? 'text-accent'
+                      : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                }
+              >
+                <CameraIcon />
               </button>
               <button
                 type="button"

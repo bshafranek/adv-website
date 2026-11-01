@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { LineIcon, PinIcon } from '../components/icons/LayerIcons';
+import { CameraIcon, LineIcon, PinIcon } from '../components/icons/LayerIcons';
 
 export function HowToUsePage() {
   return (
@@ -28,22 +28,30 @@ export function HowToUsePage() {
             "Clear all" next to the Active Layers heading hides every active route at once.
           </p>
           <p className="mt-2 flex flex-wrap items-center gap-1">
-            Each row has two icons for showing/hiding that route's line and waypoints independently
-            of each other: a
+            Each row has icons for showing/hiding that route's line, waypoints, and photos
+            independently of each other: a
             <span className="inline-flex text-accent">
               <LineIcon />
             </span>
-            line icon toggles the route's path on the map, and a
+            line icon toggles the route's path on the map, a
             <span className="inline-flex text-accent">
               <PinIcon />
             </span>
-            pin icon toggles its waypoint markers. Both default to on; click either to turn it off —
-            it turns gray (
+            pin icon toggles its waypoint markers, and a
+            <span className="inline-flex text-accent">
+              <CameraIcon />
+            </span>
+            camera icon toggles its GPS-tagged photos (only enabled for routes that have any). Each
+            defaults to on; click one to turn it off — it turns gray (
             <span className="inline-flex text-gray-500">
               <LineIcon />
             </span>
             ) when off, and clicking it again turns it back on. This doesn't remove the route from
             Active Layers, just what's drawn on the map for it.
+          </p>
+          <p className="mt-2">
+            Photo pins show a small count badge when more than one photo was taken at that spot —
+            click the pin to see the first one, with prev/next buttons to step through the rest.
           </p>
           <p className="mt-2">
             The color swatch opens your browser's color picker to recolor the route's line, and the

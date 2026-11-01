@@ -24,6 +24,26 @@ export function PinIcon({ size = 14 }: { size?: number }) {
   );
 }
 
+export function CameraIcon({ size = 14 }: { size?: number }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path
+        d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="14" r="3.5" />
+    </svg>
+  );
+}
+
 export function StackIcon({ size = 14 }: { size?: number }) {
   return (
     <svg

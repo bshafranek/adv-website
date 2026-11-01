@@ -10,6 +10,7 @@ const DEFAULT_ROUTE_STATE: RouteUiState = {
   color: null,
   waypointsVisible: true,
   lineVisible: true,
+  photosVisible: true,
 };
 
 function withDefaults(state: RouteUiState | undefined): RouteUiState {
@@ -83,6 +84,11 @@ export function TripCollectionsProvider({ children }: { children: ReactNode }) {
         setRouteState((prev) => ({
           ...prev,
           [routeId]: { ...withDefaults(prev[routeId]), lineVisible },
+        })),
+      setPhotosVisible: (routeId, photosVisible) =>
+        setRouteState((prev) => ({
+          ...prev,
+          [routeId]: { ...withDefaults(prev[routeId]), photosVisible },
         })),
       reorderRoutes: setRouteOrder,
       setActiveRoute: setActiveRouteId,

@@ -8,12 +8,15 @@ import { FitBoundsControl } from './FitBoundsControl';
 import { MapResizeHandler } from './MapResizeHandler';
 import { MapFlyTo } from './MapFlyTo';
 import { WaypointPopup } from '../waypoints/WaypointPopup';
+import { PhotoPopup } from '../photos/PhotoPopup';
+import { createPhotoMarkerIcon } from './photoMarkerIcon';
 import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
 import { useSettings } from '../../hooks/useSettings';
 import { useGpxRoutes, type RouteRef } from '../../hooks/useGpxRoutes';
 import { resolveRouteColor } from '../../utils/routeColor';
 import type { LocalRoute } from '../../types/localRoute';
+import type { PhotoGroup } from '../../types/photo';
 
 const DEFAULT_CENTER: LatLngExpression = [39.8, -98.6];
 const DEFAULT_ZOOM = 4;
@@ -41,12 +44,13 @@ export function MapView({
   const { routeState, routeOrder, activeRouteId } = useTripCollections();
 
   const routeLookup = useMemo(() => {
-    const map = new Map<string, { file: string; color: string }>();
+    const map = new Map<string, { file: string; color: string; photos: PhotoGroup[] }>();
     manifest?.groups.forEach((group) => {
       group.routes?.forEach((route) => {
         map.set(route.id, {
           file: route.file,
           color: resolveRouteColor(route.id, route, routeState, group.defaultColor ?? '#3b82f6'),
+          photos: route.photos ?? [],
         });
       });
       group.collections.forEach((collection) => {
@@ -54,6 +58,7 @@ export function MapView({
           map.set(route.id, {
             file: route.file,
             color: resolveRouteColor(route.id, route, routeState, collection.defaultColor),
+            photos: route.photos ?? [],
           });
         });
       });
@@ -68,9 +73,12 @@ export function MapView({
       .reverse()
       .map((id) => {
         const info = routeLookup.get(id);
-        return info ? { id, file: info.file, color: info.color } : null;
+        return info ? { id, file: info.file, color: info.color, photos: info.photos } : null;
       })
-      .filter((route): route is { id: string; file: string; color: string } => route !== null);
+      .filter(
+        (route): route is { id: string; file: string; color: string; photos: PhotoGroup[] } =>
+          route !== null,
+      );
   }, [routeOrder, routeLookup]);
 
   const routeRefs = useMemo<RouteRef[]>(
@@ -214,6 +222,21 @@ export function MapView({
               <Marker key={`${route.id}-wp-${i}`} position={[wp.lat, wp.lon]}>
                 <Popup>
                   <WaypointPopup waypoint={wp} />
+                </Popup>
+              </Marker>
+            )),
+          )}
+        {visibleRoutes
+          .filter((route) => routeState[route.id]?.photosVisible ?? true)
+          .flatMap((route) =>
+            route.photos.map((group) => (
+              <Marker
+                key={`${route.id}-photo-${group.id}`}
+                position={[group.lat, group.lon]}
+                icon={createPhotoMarkerIcon(group.photos.length)}
+              >
+                <Popup>
+                  <PhotoPopup group={group} />
                 </Popup>
               </Marker>
             )),

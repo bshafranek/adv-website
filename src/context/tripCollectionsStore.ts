@@ -5,6 +5,7 @@ export interface RouteUiState {
   color: string | null;
   waypointsVisible: boolean;
   lineVisible: boolean;
+  photosVisible: boolean;
 }
 
 export interface TripCollectionsContextValue {
@@ -16,6 +17,7 @@ export interface TripCollectionsContextValue {
   setRouteColor: (routeId: string, color: string) => void;
   setWaypointsVisible: (routeId: string, visible: boolean) => void;
   setLineVisible: (routeId: string, visible: boolean) => void;
+  setPhotosVisible: (routeId: string, visible: boolean) => void;
   reorderRoutes: (order: string[]) => void;
   setActiveRoute: (routeId: string | null) => void;
 }

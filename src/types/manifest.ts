@@ -1,3 +1,5 @@
+import type { PhotoGroup } from './photo';
+
 export interface ManifestRoute {
   id: string;
   title: string;
@@ -9,6 +11,8 @@ export interface ManifestRoute {
   file: string;
   /** Overrides collection.defaultColor (or group.defaultColor, for ungrouped routes) when set */
   color: string | null;
+  /** GPS-tagged photos along this route, grouped by proximity. Omitted if there are none. */
+  photos?: PhotoGroup[];
 }
 
 export interface ManifestCollection {
