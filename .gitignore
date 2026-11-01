@@ -14,6 +14,11 @@ dist-ssr
 .env
 .env.local
 
+# Staging area for original photos before `scripts/import-photos.cjs` - only
+# the converted/resized output in public/photos/ gets committed.
+photo-inbox/*
+!photo-inbox/README.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
