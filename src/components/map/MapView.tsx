@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type DragEvent } fro
 import { MapContainer, TileLayer, Polyline, Marker, Popup, CircleMarker } from 'react-leaflet';
 import type { LatLngExpression, Polyline as LeafletPolyline } from 'leaflet';
 import { BASEMAPS } from '../../constants/basemaps';
+import { ACTIVE_ROUTE_HIGHLIGHT_COLOR } from '../../constants/colors';
 import { BasemapControl } from './BasemapControl';
 import { FullscreenButton } from './FullscreenButton';
 import { FitBoundsControl } from './FitBoundsControl';
@@ -35,7 +36,7 @@ export function MapView({
   const activeBasemap = BASEMAPS.find((b) => b.id === activeBasemapId) ?? BASEMAPS[0];
 
   const { manifest } = useManifest();
-  const { routeState, routeOrder } = useTripCollections();
+  const { routeState, routeOrder, activeRouteId } = useTripCollections();
 
   const routeLookup = useMemo(() => {
     const map = new Map<string, { file: string; color: string }>();
@@ -82,9 +83,10 @@ export function MapView({
     () =>
       visibleRoutes.map((route) => ({
         ...route,
+        color: route.id === activeRouteId ? ACTIVE_ROUTE_HIGHLIGHT_COLOR : route.color,
         positions: (routeData[route.id]?.points ?? []).map((p): LatLngExpression => [p.lat, p.lon]),
       })),
-    [visibleRoutes, routeData],
+    [visibleRoutes, routeData, activeRouteId],
   );
 
   const localPositions = useMemo(

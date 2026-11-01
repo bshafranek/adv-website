@@ -8,3 +8,6 @@ export const DEFAULT_ROUTE_COLORS: string[] = [
   '#14b8a6',
   '#ec4899',
 ];
+
+/** Overrides a route's own color on the map while it's the selected/active route. */
+export const ACTIVE_ROUTE_HIGHLIGHT_COLOR = '#80f7f9';
