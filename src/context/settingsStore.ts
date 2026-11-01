@@ -9,6 +9,7 @@ export interface SettingsContextValue {
   setTheme: (theme: Settings['theme']) => void;
   setRideSummaryDefaultOpen: (open: boolean) => void;
   setElevationProfileDefaultOpen: (open: boolean) => void;
+  setSidebarOpenByDefault: (open: boolean) => void;
   resetSettings: () => void;
 }
 

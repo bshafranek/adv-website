@@ -32,6 +32,8 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         setSettings((prev) => ({ ...prev, rideSummaryDefaultOpen: open })),
       setElevationProfileDefaultOpen: (open) =>
         setSettings((prev) => ({ ...prev, elevationProfileDefaultOpen: open })),
+      setSidebarOpenByDefault: (open) =>
+        setSettings((prev) => ({ ...prev, sidebarOpenByDefault: open })),
       resetSettings: () => setSettings(DEFAULT_SETTINGS),
     }),
     [settings],

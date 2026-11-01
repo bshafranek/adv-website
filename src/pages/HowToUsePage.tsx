@@ -89,9 +89,9 @@ export function HowToUsePage() {
           <p>
             Open <strong>Settings</strong> from the ☰ menu to set units (imperial or metric), which
             basemap the map opens with, the active-route highlight color, dark or light theme, and
-            whether the Ride Summary and Elevation Profile panels start open or collapsed. These
-            are saved in this browser, so they'll still be set next time you load the site here —
-            but they won't follow you to a different browser or device.
+            whether the sidebar, Ride Summary, and Elevation Profile start open or collapsed.
+            These are saved in this browser, so they'll still be set next time you load the site
+            here — but they won't follow you to a different browser or device.
           </p>
         </section>
       </div>

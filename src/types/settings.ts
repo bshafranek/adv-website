@@ -12,6 +12,7 @@ export interface Settings {
   theme: Theme;
   rideSummaryDefaultOpen: boolean;
   elevationProfileDefaultOpen: boolean;
+  sidebarOpenByDefault: boolean;
 }
 
 export const SETTINGS_STORAGE_KEY = 'adv-website:settings';
@@ -24,4 +25,5 @@ export const DEFAULT_SETTINGS: Settings = {
   theme: 'dark',
   rideSummaryDefaultOpen: false,
   elevationProfileDefaultOpen: false,
+  sidebarOpenByDefault: true,
 };

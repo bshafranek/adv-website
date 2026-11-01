@@ -1,8 +1,10 @@
 import { useState, type ReactNode } from 'react';
 import { AppHeader } from './AppHeader';
+import { useSettings } from '../../hooks/useSettings';
 
 export function MainLayout({ sidebar, children }: { sidebar: ReactNode; children: ReactNode }) {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { settings } = useSettings();
+  const [sidebarOpen, setSidebarOpen] = useState(settings.sidebarOpenByDefault);
 
   return (
     <div className="flex h-screen flex-col bg-background">

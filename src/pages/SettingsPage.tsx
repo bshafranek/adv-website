@@ -41,6 +41,7 @@ export function SettingsPage() {
     setTheme,
     setRideSummaryDefaultOpen,
     setElevationProfileDefaultOpen,
+    setSidebarOpenByDefault,
     resetSettings,
   } = useSettings();
 
@@ -135,8 +136,13 @@ export function SettingsPage() {
           </div>
         </Card>
 
-        <Card title="Panel defaults">
+        <Card title="Layout defaults">
           <div className="flex flex-col gap-2">
+            <Toggle
+              checked={settings.sidebarOpenByDefault}
+              onChange={setSidebarOpenByDefault}
+              label="Sidebar open by default"
+            />
             <Toggle
               checked={settings.rideSummaryDefaultOpen}
               onChange={setRideSummaryDefaultOpen}
@@ -149,8 +155,9 @@ export function SettingsPage() {
             />
           </div>
           <p className="mt-2 text-xs text-gray-500">
-            Whether these panels start expanded or collapsed when you load the viewer. You can
-            still expand or collapse either one at any time — this just sets the starting state.
+            Whether the sidebar and these panels start expanded or collapsed when you load the
+            viewer. You can still toggle any of them at any time — this just sets the starting
+            state.
           </p>
         </Card>
 
