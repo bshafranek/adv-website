@@ -14,6 +14,7 @@ export function ActiveLayersList() {
     activeRouteId,
     reorderRoutes,
     setRouteVisible,
+    setRoutesVisible,
     setWaypointsVisible,
     setLineVisible,
     setActiveRoute,
@@ -55,9 +56,20 @@ export function ActiveLayersList() {
 
   return (
     <div>
-      <h2 className="px-3 pt-3 pb-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
-        Active Layers {routeOrder.length > 0 && `(${routeOrder.length})`}
-      </h2>
+      <div className="flex items-center justify-between px-3 pt-3 pb-1">
+        <h2 className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Active Layers {routeOrder.length > 0 && `(${routeOrder.length})`}
+        </h2>
+        {routeOrder.length > 0 && (
+          <button
+            type="button"
+            onClick={() => setRoutesVisible(routeOrder, false)}
+            className="text-xs text-gray-500 hover:text-red-400"
+          >
+            Clear all
+          </button>
+        )}
+      </div>
       {routeOrder.length === 0 ? (
         <p className="px-3 pb-2 text-xs text-gray-600">
           Check a route below to add it here, drag to reorder stacking.
