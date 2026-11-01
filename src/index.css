@@ -1,15 +1,27 @@
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Base tokens are the light theme; .dark overrides them (toggled by
+   SettingsProvider based on the theme setting - see src/context/SettingsContext.tsx).
+   Individual components still use Tailwind's stock gray scale directly for
+   text (text-gray-900 dark:text-gray-100, etc.) rather than a token here,
+   mirrored roughly around gray-500 so relative emphasis matches in both themes. */
 @theme {
-  --color-background: #0b1215;
-  --color-surface: #141c20;
-  --color-surface-raised: #1c262b;
-  --color-border: #2a363c;
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-raised: #f1f5f9;
+  --color-border: #cbd5e1;
   --color-accent: #f97316;
   --color-trail: #22c55e;
 }
 
+.dark {
+  --color-background: #0b1215;
+  --color-surface: #141c20;
+  --color-surface-raised: #1c262b;
+  --color-border: #2a363c;
+}
+
 body {
-  @apply bg-background text-gray-100;
+  @apply bg-background text-gray-900 dark:text-gray-100;
 }

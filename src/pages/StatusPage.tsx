@@ -10,7 +10,7 @@ export function StatusPage() {
   const filesWithErrors = entries.filter((entry) => entry.errors.length > 0).length;
 
   return (
-    <div className="min-h-screen bg-background p-6 text-gray-100">
+    <div className="min-h-screen bg-background p-6 text-gray-900 dark:text-gray-100">
       <Link to="/" className="text-sm text-accent hover:underline">
         &larr; Back to viewer
       </Link>
@@ -18,13 +18,19 @@ export function StatusPage() {
 
       <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
         <Card title="Files Processed">
-          <p className="text-lg font-semibold text-gray-100">{formatNumber(entries.length)}</p>
+          <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            {formatNumber(entries.length)}
+          </p>
         </Card>
         <Card title="Points in Memory">
-          <p className="text-lg font-semibold text-gray-100">{formatNumber(totalPoints)}</p>
+          <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            {formatNumber(totalPoints)}
+          </p>
         </Card>
         <Card title="Files with Errors">
-          <p className="text-lg font-semibold text-gray-100">{formatNumber(filesWithErrors)}</p>
+          <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            {formatNumber(filesWithErrors)}
+          </p>
         </Card>
       </div>
 
@@ -58,7 +64,9 @@ export function StatusPage() {
                 </td>
                 <td className="py-2">{formatNumber(entry.pointCount)}</td>
                 <td className="py-2">{formatNumber(entry.waypointCount)}</td>
-                <td className="py-2 text-gray-400">{entry.errors.join('; ') || '—'}</td>
+                <td className="py-2 text-gray-600 dark:text-gray-400">
+                  {entry.errors.join('; ') || '—'}
+                </td>
               </tr>
             ))
           )}

@@ -20,7 +20,7 @@ export function CollapsiblePanel({
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className={`flex w-full items-center text-xs font-semibold uppercase tracking-wide text-gray-400 hover:bg-surface-raised hover:text-gray-200 ${
+        className={`flex w-full items-center text-xs font-semibold uppercase tracking-wide text-gray-600 hover:bg-surface-raised hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 ${
           open ? 'justify-between px-4 py-2' : 'justify-center py-1'
         }`}
         aria-expanded={open}

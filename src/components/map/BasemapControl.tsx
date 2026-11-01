@@ -31,7 +31,7 @@ export function BasemapControl({
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className="flex items-center gap-1.5 rounded-md border border-border bg-surface px-2 py-1.5 text-gray-200 hover:bg-surface-raised"
+        className="flex items-center gap-1.5 rounded-md border border-border bg-surface px-2 py-1.5 text-gray-800 hover:bg-surface-raised dark:text-gray-200"
       >
         <StackIcon />
         <span>{activeBasemap.name}</span>
@@ -54,7 +54,7 @@ export function BasemapControl({
               className={`block w-full px-3 py-1.5 text-left ${
                 activeId === basemap.id
                   ? 'bg-accent text-black'
-                  : 'text-gray-300 hover:bg-surface-raised'
+                  : 'text-gray-700 hover:bg-surface-raised dark:text-gray-300'
               }`}
             >
               {basemap.name}

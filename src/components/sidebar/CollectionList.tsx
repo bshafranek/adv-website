@@ -52,7 +52,7 @@ export function CollectionList() {
               onClick={() =>
                 setCollapsedGroups((prev) => ({ ...prev, [group.id]: !groupCollapsed }))
               }
-              className="flex w-full items-center justify-between bg-surface-raised px-3 py-2 text-sm font-semibold text-gray-200 hover:text-gray-100"
+              className="flex w-full items-center justify-between bg-surface-raised px-3 py-2 text-sm font-semibold text-gray-800 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-100"
               aria-expanded={!groupCollapsed}
             >
               <span>
@@ -112,12 +112,14 @@ export function CollectionList() {
                             [collection.id]: !collapsed,
                           }))
                         }
-                        className="flex flex-1 items-center justify-between py-1 text-xs font-semibold uppercase tracking-wide text-gray-500 hover:text-gray-300"
+                        className="flex flex-1 items-center justify-between py-1 text-xs font-semibold uppercase tracking-wide text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
                         aria-expanded={!collapsed}
                       >
                         <span>
                           {collection.title}{' '}
-                          <span className="text-gray-600">({collection.routes.length})</span>
+                          <span className="text-gray-400 dark:text-gray-600">
+                            ({collection.routes.length})
+                          </span>
                         </span>
                         <span
                           className="transition-transform duration-200"

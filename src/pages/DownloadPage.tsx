@@ -95,12 +95,12 @@ export function DownloadPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background p-6 pb-24 text-gray-100">
+    <div className="min-h-screen bg-background p-6 pb-24 text-gray-900 dark:text-gray-100">
       <Link to="/" className="text-sm text-accent hover:underline">
         &larr; Back to viewer
       </Link>
       <h1 className="mt-4 text-xl font-semibold">Download GPX Files</h1>
-      <p className="mt-2 text-sm text-gray-400">
+      <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
         Check routes from anywhere below to bundle a custom selection into one .zip, use a group's
         or collection's own "Download All" for everything in it at once, or click "Download" next to
         a single route to grab just its raw .gpx file.
@@ -121,7 +121,7 @@ export function DownloadPage() {
                   onChange={toggleRoutes}
                   title="Select/deselect all routes in this group"
                 />
-                <h2 className="text-lg font-semibold text-gray-100">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                   {group.title}{' '}
                   <span className="text-sm font-normal text-gray-500">
                     ({routes.length} routes)
@@ -132,7 +132,7 @@ export function DownloadPage() {
                 type="button"
                 disabled={zippingId === group.id}
                 onClick={() => handleDownloadZip(group.id, group.title, routes)}
-                className="rounded-md bg-surface-raised px-3 py-1.5 text-sm text-gray-100 transition-colors hover:bg-accent hover:text-black disabled:cursor-wait disabled:opacity-60"
+                className="rounded-md bg-surface-raised px-3 py-1.5 text-sm text-gray-900 transition-colors hover:bg-accent hover:text-black disabled:cursor-wait disabled:opacity-60 dark:text-gray-100"
               >
                 {zippingId === group.id ? 'Zipping…' : 'Download All (.zip)'}
               </button>
@@ -152,12 +152,12 @@ export function DownloadPage() {
                         onChange={() => toggleRoute(route.id)}
                         className="h-4 w-4 cursor-pointer accent-accent"
                       />
-                      <span className="text-gray-300">{route.title}</span>
+                      <span className="text-gray-700 dark:text-gray-300">{route.title}</span>
                     </label>
                     <a
                       href={`${import.meta.env.BASE_URL}${route.file}`}
                       download={`${route.id}.gpx`}
-                      className="rounded-md bg-surface-raised px-2 py-0.5 text-xs text-gray-100 transition-colors hover:bg-accent hover:text-black"
+                      className="rounded-md bg-surface-raised px-2 py-0.5 text-xs text-gray-900 transition-colors hover:bg-accent hover:text-black dark:text-gray-100"
                     >
                       Download
                     </a>
@@ -176,7 +176,7 @@ export function DownloadPage() {
                       onChange={toggleRoutes}
                       title="Select/deselect all routes in this collection"
                     />
-                    <h3 className="font-semibold text-gray-100">
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                       {collection.title}{' '}
                       <span className="text-sm font-normal text-gray-500">
                         ({collection.routes.length} routes)
@@ -189,7 +189,7 @@ export function DownloadPage() {
                     onClick={() =>
                       handleDownloadZip(collection.id, collection.title, collection.routes)
                     }
-                    className="rounded-md bg-surface-raised px-3 py-1.5 text-sm text-gray-100 transition-colors hover:bg-accent hover:text-black disabled:cursor-wait disabled:opacity-60"
+                    className="rounded-md bg-surface-raised px-3 py-1.5 text-sm text-gray-900 transition-colors hover:bg-accent hover:text-black disabled:cursor-wait disabled:opacity-60 dark:text-gray-100"
                   >
                     {zippingId === collection.id ? 'Zipping…' : 'Download All (.zip)'}
                   </button>
@@ -207,12 +207,12 @@ export function DownloadPage() {
                           onChange={() => toggleRoute(route.id)}
                           className="h-4 w-4 cursor-pointer accent-accent"
                         />
-                        <span className="text-gray-300">{route.title}</span>
+                        <span className="text-gray-700 dark:text-gray-300">{route.title}</span>
                       </label>
                       <a
                         href={`${import.meta.env.BASE_URL}${route.file}`}
                         download={`${route.id}.gpx`}
-                        className="rounded-md bg-surface-raised px-2 py-0.5 text-xs text-gray-100 transition-colors hover:bg-accent hover:text-black"
+                        className="rounded-md bg-surface-raised px-2 py-0.5 text-xs text-gray-900 transition-colors hover:bg-accent hover:text-black dark:text-gray-100"
                       >
                         Download
                       </a>
@@ -227,14 +227,14 @@ export function DownloadPage() {
 
       {selectedIds.size > 0 && (
         <div className="fixed inset-x-0 bottom-0 z-50 flex items-center justify-between border-t border-border bg-surface px-6 py-3 shadow-lg">
-          <span className="text-sm text-gray-300">
+          <span className="text-sm text-gray-700 dark:text-gray-300">
             {selectedIds.size} route{selectedIds.size === 1 ? '' : 's'} selected
           </span>
           <div className="flex gap-2">
             <button
               type="button"
               onClick={() => setSelectedIds(new Set())}
-              className="rounded-md px-3 py-1.5 text-sm text-gray-400 hover:text-gray-200"
+              className="rounded-md px-3 py-1.5 text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
             >
               Clear
             </button>

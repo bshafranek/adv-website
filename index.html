@@ -1,10 +1,25 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brent's Adventures — GPX Ride Viewer</title>
+    <script>
+      // Applies the saved theme before first paint so there's no flash of
+      // the wrong theme while React mounts. Defaults to dark (matching
+      // DEFAULT_SETTINGS.theme in src/types/settings.ts) unless the saved
+      // settings explicitly say otherwise. Key must match SETTINGS_STORAGE_KEY.
+      (function () {
+        try {
+          var raw = localStorage.getItem('adv-website:settings');
+          var theme = raw ? JSON.parse(raw).theme : null;
+          document.documentElement.classList.toggle('dark', theme !== 'light');
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

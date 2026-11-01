@@ -158,7 +158,11 @@ GitHub Actions** — only relevant again if the repo is ever recreated.)
 - **Layer state doesn't persist.** Which routes are checked, their stacking order, line/
   waypoint visibility, color overrides, and the selected "active" route all live only in
   that browser tab's memory — refreshing the page resets everything to all-routes-off.
-  (Tracked as a known gap, not yet implemented.)
+  (Tracked as a known gap, not yet implemented.) The `/settings` page's preferences
+  (`src/context/SettingsContext.tsx`) **do** persist, via a generic, reusable
+  localStorage load/save pair in `src/utils/persistence/localStorageState.ts` keyed by a
+  schema version — layer-state persistence, if it's ever built, should reuse that same
+  pattern rather than inventing a new one.
 - **Drag-and-drop local files are view-only.** A `.gpx` dropped onto the map renders
   immediately but isn't wired into the elevation chart or ride summary stats.
 - **Very large tracks parse on the main thread.** Files with 100k+ points (a few of the

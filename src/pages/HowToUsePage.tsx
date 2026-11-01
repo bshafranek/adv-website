@@ -3,14 +3,14 @@ import { LineIcon, PinIcon } from '../components/icons/LayerIcons';
 
 export function HowToUsePage() {
   return (
-    <div className="min-h-screen bg-background p-6 text-gray-100">
+    <div className="min-h-screen bg-background p-6 text-gray-900 dark:text-gray-100">
       <Link to="/" className="text-sm text-accent hover:underline">
         &larr; Back to viewer
       </Link>
       <h1 className="mt-4 text-xl font-semibold">How to Use</h1>
-      <div className="mt-4 space-y-5 text-sm text-gray-300">
+      <div className="mt-4 space-y-5 text-sm text-gray-700 dark:text-gray-300">
         <section>
-          <h2 className="font-semibold text-gray-100">Showing routes</h2>
+          <h2 className="font-semibold text-gray-900 dark:text-gray-100">Showing routes</h2>
           <p>
             Check a route's box in the sidebar to add it to the map and the Active Layers list.
             Click a route's title (in the sidebar or in Active Layers) to select it as the active
@@ -22,7 +22,7 @@ export function HowToUsePage() {
           </p>
         </section>
         <section>
-          <h2 className="font-semibold text-gray-100">Active Layers</h2>
+          <h2 className="font-semibold text-gray-900 dark:text-gray-100">Active Layers</h2>
           <p>
             Drag a row by its ⠿ handle to reorder which route draws on top where routes overlap.
             "Clear all" next to the Active Layers heading hides every active route at once.
@@ -51,14 +51,14 @@ export function HowToUsePage() {
           </p>
         </section>
         <section>
-          <h2 className="font-semibold text-gray-100">Elevation chart</h2>
+          <h2 className="font-semibold text-gray-900 dark:text-gray-100">Elevation chart</h2>
           <p>
             Hover over the chart to move a cursor marker along the route on the map in real time.
             Click a point on the chart to fly the map to that spot.
           </p>
         </section>
         <section>
-          <h2 className="font-semibold text-gray-100">Map controls</h2>
+          <h2 className="font-semibold text-gray-900 dark:text-gray-100">Map controls</h2>
           <p>
             The basemap button top-right of the map opens a dropdown to switch between Street,
             Aerial, Topographic, and Light Gray basemaps. The small button under the zoom controls
@@ -67,7 +67,7 @@ export function HowToUsePage() {
           </p>
         </section>
         <section>
-          <h2 className="font-semibold text-gray-100">Viewing a local GPX file</h2>
+          <h2 className="font-semibold text-gray-900 dark:text-gray-100">Viewing a local GPX file</h2>
           <p>
             Drag a .gpx file from your computer and drop it onto the map to view it immediately — it
             doesn't need to be part of this site's collection. It shows up as a dashed line (and a
@@ -76,12 +76,21 @@ export function HowToUsePage() {
           </p>
         </section>
         <section>
-          <h2 className="font-semibold text-gray-100">Downloading GPX files</h2>
+          <h2 className="font-semibold text-gray-900 dark:text-gray-100">Downloading GPX files</h2>
           <p>
             Open <strong>Download</strong> from the ☰ menu to grab raw .gpx files. Check routes from
             anywhere on the page — any mix of groups and collections — to bundle a custom selection
             into one .zip, use a group's or collection's own "Download All" for everything in it at
             once, or click "Download" next to a single route for just its raw .gpx file.
+          </p>
+        </section>
+        <section>
+          <h2 className="font-semibold text-gray-900 dark:text-gray-100">Settings</h2>
+          <p>
+            Open <strong>Settings</strong> from the ☰ menu to set units (imperial or metric), which
+            basemap the map opens with, the active-route highlight color, and dark or light theme.
+            These are saved in this browser, so they'll still be set next time you load the site
+            here — but they won't follow you to a different browser or device.
           </p>
         </section>
       </div>

@@ -26,7 +26,7 @@ export function LocalFilesList({
             className="h-3 w-3 shrink-0 rounded-full border border-border"
             style={{ backgroundColor: route.color }}
           />
-          <span className="flex-1 truncate text-gray-200" title={route.name}>
+          <span className="flex-1 truncate text-gray-800 dark:text-gray-200" title={route.name}>
             {route.name}
           </span>
           <button

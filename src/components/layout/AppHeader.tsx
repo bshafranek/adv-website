@@ -20,6 +20,7 @@ function HamburgerIcon() {
 const MENU_LINKS = [
   { to: '/status', label: 'App Status' },
   { to: '/download', label: 'Download' },
+  { to: '/settings', label: 'Settings' },
   { to: '/how-to-use', label: 'How to Use' },
   { to: '/about', label: 'About' },
 ];
@@ -55,7 +56,7 @@ export function AppHeader() {
 
   return (
     <header className="flex items-center justify-between border-b border-border bg-surface px-4 py-3">
-      <Link to="/" className="font-semibold tracking-tight text-gray-100">
+      <Link to="/" className="font-semibold tracking-tight text-gray-900 dark:text-gray-100">
         Brent's Adventures
       </Link>
       <button
@@ -64,7 +65,7 @@ export function AppHeader() {
         onClick={() => setMenuOpen((prev) => !prev)}
         aria-label="Open menu"
         aria-expanded={menuOpen}
-        className="rounded p-1 text-gray-300 hover:bg-surface-raised hover:text-gray-100"
+        className="rounded p-1 text-gray-700 hover:bg-surface-raised hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
       >
         <HamburgerIcon />
       </button>
@@ -81,7 +82,7 @@ export function AppHeader() {
                 key={link.to}
                 to={link.to}
                 onClick={() => setMenuOpen(false)}
-                className="block px-4 py-2 text-sm text-gray-200 hover:bg-surface-raised hover:text-accent"
+                className="block px-4 py-2 text-sm text-gray-800 hover:bg-surface-raised hover:text-accent dark:text-gray-200"
               >
                 {link.label}
               </Link>

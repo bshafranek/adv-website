@@ -30,7 +30,7 @@ export function RouteListItem({
         <button
           type="button"
           onClick={onSelect}
-          className={`text-left text-sm hover:text-accent ${active ? 'font-semibold text-accent' : 'text-gray-200'}`}
+          className={`text-left text-sm hover:text-accent ${active ? 'font-semibold text-accent' : 'text-gray-800 dark:text-gray-200'}`}
         >
           {route.title}
         </button>

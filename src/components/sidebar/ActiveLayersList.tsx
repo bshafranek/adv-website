@@ -71,7 +71,7 @@ export function ActiveLayersList() {
         )}
       </div>
       {routeOrder.length === 0 ? (
-        <p className="px-3 pb-2 text-xs text-gray-600">
+        <p className="px-3 pb-2 text-xs text-gray-400 dark:text-gray-600">
           Check a route below to add it here, drag to reorder stacking.
         </p>
       ) : (
@@ -107,7 +107,7 @@ export function ActiveLayersList() {
                 type="button"
                 onClick={() => setActiveRoute(activeRouteId === id ? null : id)}
                 className={`flex-1 truncate text-left hover:text-accent ${
-                  activeRouteId === id ? 'font-semibold text-accent' : 'text-gray-200'
+                  activeRouteId === id ? 'font-semibold text-accent' : 'text-gray-800 dark:text-gray-200'
                 }`}
               >
                 {info.title}
@@ -116,7 +116,9 @@ export function ActiveLayersList() {
                 type="button"
                 onClick={() => setLineVisible(id, !lineVisible)}
                 title={lineVisible ? 'Hide line' : 'Show line'}
-                className={lineVisible ? 'text-accent' : 'text-gray-500 hover:text-gray-300'}
+                className={
+                  lineVisible ? 'text-accent' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                }
               >
                 <LineIcon />
               </button>
@@ -133,10 +135,10 @@ export function ActiveLayersList() {
                 }
                 className={
                   !hasWaypoints
-                    ? 'cursor-not-allowed text-gray-700'
+                    ? 'cursor-not-allowed text-gray-300 dark:text-gray-700'
                     : waypointsVisible
                       ? 'text-accent'
-                      : 'text-gray-500 hover:text-gray-300'
+                      : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
                 }
               >
                 <PinIcon />

@@ -10,10 +10,23 @@ Still-open ideas for more pages later:
 
 - **Changelog / What's New** — this app has grown a lot through iteration;
   could be nice to show progress for an open-source project
-- **Settings** — unit system (imperial/metric), default basemap, maybe
-  theme — only worth it once there's more than one or two preferences
 - Probably _not_ needed: a separate "browse all routes" catalog page, since
   the sidebar + collections already cover that
+
+## ~~Settings page~~ — done
+
+`/settings` (linked from the hamburger menu) controls unit system
+(imperial/metric), default basemap, active-route highlight color, and
+theme (dark/light, with a real light palette — not just a stub). Settings
+persist to `localStorage` via a generic `loadPersistedState`/
+`savePersistedState` pair in `src/utils/persistence/localStorageState.ts`,
+keyed by a `schemaVersion` so a future shape change falls back to defaults
+instead of crashing. `SettingsContext`/`useSettings` follow the same
+provider/hook shape as `TripCollectionsContext`/`useTripCollections` on
+purpose — layer-state persistence (checked/visible routes, stacking order,
+colors), if it's ever wanted, should reuse the exact same
+load/save-on-change pattern against its own storage key, filtering out any
+route IDs no longer in the manifest on load.
 
 ## ~~Independent waypoint/route visibility~~ — done
 

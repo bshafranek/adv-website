@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useRef, useState, type DragEvent } fro
 import { MapContainer, TileLayer, Polyline, Marker, Popup, CircleMarker } from 'react-leaflet';
 import type { LatLngExpression, Polyline as LeafletPolyline } from 'leaflet';
 import { BASEMAPS } from '../../constants/basemaps';
-import { ACTIVE_ROUTE_HIGHLIGHT_COLOR } from '../../constants/colors';
 import { BasemapControl } from './BasemapControl';
 import { FullscreenButton } from './FullscreenButton';
 import { FitBoundsControl } from './FitBoundsControl';
@@ -11,6 +10,7 @@ import { MapFlyTo } from './MapFlyTo';
 import { WaypointPopup } from '../waypoints/WaypointPopup';
 import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
+import { useSettings } from '../../hooks/useSettings';
 import { useGpxRoutes, type RouteRef } from '../../hooks/useGpxRoutes';
 import type { LocalRoute } from '../../types/localRoute';
 
@@ -31,8 +31,9 @@ export function MapView({
   localRoutes: LocalRoute[];
   onFilesDropped: (files: File[]) => void;
 }) {
+  const { settings } = useSettings();
   const [isDraggingOver, setIsDraggingOver] = useState(false);
-  const [activeBasemapId, setActiveBasemapId] = useState(BASEMAPS[0].id);
+  const [activeBasemapId, setActiveBasemapId] = useState(settings.defaultBasemapId);
   const activeBasemap = BASEMAPS.find((b) => b.id === activeBasemapId) ?? BASEMAPS[0];
 
   const { manifest } = useManifest();
@@ -83,10 +84,10 @@ export function MapView({
     () =>
       visibleRoutes.map((route) => ({
         ...route,
-        color: route.id === activeRouteId ? ACTIVE_ROUTE_HIGHLIGHT_COLOR : route.color,
+        color: route.id === activeRouteId ? settings.activeRouteHighlightColor : route.color,
         positions: (routeData[route.id]?.points ?? []).map((p): LatLngExpression => [p.lat, p.lon]),
       })),
-    [visibleRoutes, routeData, activeRouteId],
+    [visibleRoutes, routeData, activeRouteId, settings.activeRouteHighlightColor],
   );
 
   const localPositions = useMemo(
@@ -147,7 +148,7 @@ export function MapView({
     >
       {isDraggingOver && (
         <div className="pointer-events-none absolute inset-0 z-[1000] flex items-center justify-center border-4 border-dashed border-accent bg-black/40">
-          <p className="rounded-md bg-surface px-4 py-2 text-sm font-medium text-gray-100">
+          <p className="rounded-md bg-surface px-4 py-2 text-sm font-medium text-gray-900 dark:text-gray-100">
             Drop .gpx file to view it
           </p>
         </div>

@@ -62,7 +62,7 @@ export function FullscreenButton({ targetRef }: { targetRef: RefObject<HTMLEleme
       type="button"
       onClick={toggle}
       title={isFullscreen ? 'Exit full screen' : 'Full screen'}
-      className="rounded-md bg-surface/90 p-1.5 text-gray-100 shadow hover:bg-surface-raised"
+      className="rounded-md bg-surface/90 p-1.5 text-gray-900 shadow hover:bg-surface-raised dark:text-gray-100"
     >
       {isFullscreen ? <CompressIcon /> : <ExpandIcon />}
     </button>

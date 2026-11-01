@@ -19,7 +19,7 @@ export function MainLayout({ sidebar, children }: { sidebar: ReactNode; children
           type="button"
           onClick={() => setSidebarOpen((prev) => !prev)}
           aria-label={sidebarOpen ? 'Hide sidebar' : 'Show sidebar'}
-          className="flex w-4 shrink-0 items-center justify-center border-r border-border bg-surface text-gray-500 hover:bg-surface-raised hover:text-gray-200"
+          className="flex w-4 shrink-0 items-center justify-center border-r border-border bg-surface text-gray-500 hover:bg-surface-raised hover:text-gray-800 dark:hover:text-gray-200"
         >
           {sidebarOpen ? '‹' : '›'}
         </button>
