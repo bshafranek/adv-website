@@ -57,7 +57,16 @@ export function HowToUsePage() {
           <p>
             Switch between Street, Topographic, and Aerial basemaps top-right of the map. The small
             button under the zoom controls (top-left) fits the view to whatever routes are currently
-            visible.
+            visible. The button bottom-right toggles full screen.
+          </p>
+        </section>
+        <section>
+          <h2 className="font-semibold text-gray-100">Viewing a local GPX file</h2>
+          <p>
+            Drag a .gpx file from your computer and drop it onto the map to view it immediately — it
+            doesn't need to be part of this site's collection. It shows up as a dashed line (and a
+            "Local Files" entry in the sidebar with a ✕ to remove it) so it's easy to tell apart
+            from the site's own routes.
           </p>
         </section>
         <section>

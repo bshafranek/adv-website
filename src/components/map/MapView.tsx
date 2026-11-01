@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type DragEvent } from 'react';
 import { MapContainer, TileLayer, Polyline, Marker, Popup, CircleMarker } from 'react-leaflet';
 import type { LatLngExpression, Polyline as LeafletPolyline } from 'leaflet';
 import { BASEMAPS } from '../../constants/basemaps';
@@ -11,6 +11,7 @@ import { WaypointPopup } from '../waypoints/WaypointPopup';
 import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
 import { useGpxRoutes, type RouteRef } from '../../hooks/useGpxRoutes';
+import type { LocalRoute } from '../../types/localRoute';
 
 const DEFAULT_CENTER: LatLngExpression = [39.8, -98.6];
 const DEFAULT_ZOOM = 4;
@@ -21,10 +22,15 @@ const DEFAULT_ZOOM = 4;
 export function MapView({
   cursorPosition,
   flyToTarget,
+  localRoutes,
+  onFilesDropped,
 }: {
   cursorPosition?: [number, number] | null;
   flyToTarget?: [number, number] | null;
+  localRoutes: LocalRoute[];
+  onFilesDropped: (files: File[]) => void;
 }) {
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [activeBasemapId, setActiveBasemapId] = useState(BASEMAPS[0].id);
   const activeBasemap = BASEMAPS.find((b) => b.id === activeBasemapId) ?? BASEMAPS[0];
 
@@ -73,9 +79,17 @@ export function MapView({
     [visibleRoutes, routeData],
   );
 
+  const localPositions = useMemo(
+    () =>
+      localRoutes.flatMap((route): LatLngExpression[] =>
+        route.data.points.map((p) => [p.lat, p.lon]),
+      ),
+    [localRoutes],
+  );
+
   const allPositions = useMemo(
-    () => polylinesByRoute.flatMap((r) => r.positions),
-    [polylinesByRoute],
+    () => [...polylinesByRoute.flatMap((r) => r.positions), ...localPositions],
+    [polylinesByRoute, localPositions],
   );
 
   // Leaflet doesn't reorder a layer's DOM position just because React
@@ -91,11 +105,33 @@ export function MapView({
 
   const mapWrapperRef = useRef<HTMLDivElement>(null);
 
+  function handleDrop(event: DragEvent<HTMLDivElement>) {
+    event.preventDefault();
+    setIsDraggingOver(false);
+    const files = Array.from(event.dataTransfer.files).filter((file) =>
+      file.name.toLowerCase().endsWith('.gpx'),
+    );
+    if (files.length > 0) onFilesDropped(files);
+  }
+
   return (
     <div
       ref={mapWrapperRef}
+      onDragOver={(e) => {
+        e.preventDefault();
+        setIsDraggingOver(true);
+      }}
+      onDragLeave={() => setIsDraggingOver(false)}
+      onDrop={handleDrop}
       className="relative h-full min-h-72 w-full overflow-hidden rounded-lg border border-border"
     >
+      {isDraggingOver && (
+        <div className="pointer-events-none absolute inset-0 z-[1000] flex items-center justify-center border-4 border-dashed border-accent bg-black/40">
+          <p className="rounded-md bg-surface px-4 py-2 text-sm font-medium text-gray-100">
+            Drop .gpx file to view it
+          </p>
+        </div>
+      )}
       <div className="absolute right-3 top-3 z-[1000]">
         <BasemapControl activeId={activeBasemapId} onChange={setActiveBasemapId} />
       </div>
@@ -141,6 +177,22 @@ export function MapView({
               </Marker>
             )),
           )}
+        {localRoutes.map((route) => (
+          <Polyline
+            key={route.id}
+            positions={route.data.points.map((p): LatLngExpression => [p.lat, p.lon])}
+            pathOptions={{ color: route.color, weight: 3, dashArray: '6 4' }}
+          />
+        ))}
+        {localRoutes.flatMap((route) =>
+          route.data.waypoints.map((wp, i) => (
+            <Marker key={`${route.id}-wp-${i}`} position={[wp.lat, wp.lon]}>
+              <Popup>
+                <WaypointPopup waypoint={wp} />
+              </Popup>
+            </Marker>
+          )),
+        )}
         {cursorPosition && (
           <CircleMarker
             center={cursorPosition}
