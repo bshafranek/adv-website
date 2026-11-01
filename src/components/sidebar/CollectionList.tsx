@@ -23,7 +23,9 @@ export function CollectionList() {
     <div>
       {manifest.groups.map((group) => {
         const groupCollapsed = collapsedGroups[group.id] ?? false;
-        const routeCount = group.collections.reduce((sum, c) => sum + c.routes.length, 0);
+        const routeCount =
+          (group.routes?.length ?? 0) +
+          group.collections.reduce((sum, c) => sum + c.routes.length, 0);
 
         return (
           <div key={group.id}>
@@ -45,6 +47,22 @@ export function CollectionList() {
                 ⌃
               </span>
             </button>
+            {!groupCollapsed &&
+              group.routes?.map((route) => (
+                <RouteListItem
+                  key={route.id}
+                  route={route}
+                  visible={routeState[route.id]?.visible ?? false}
+                  color={routeState[route.id]?.color ?? route.color ?? group.defaultColor ?? '#3b82f6'}
+                  active={activeRouteId === route.id}
+                  onToggleVisible={(visible) => setRouteVisible(route.id, visible)}
+                  onColorChange={(color) => setRouteColor(route.id, color)}
+                  onSelect={() => {
+                    setActiveRoute(route.id);
+                    setRouteVisible(route.id, true);
+                  }}
+                />
+              ))}
             {!groupCollapsed &&
               group.collections.map((collection) => {
                 const collapsed =

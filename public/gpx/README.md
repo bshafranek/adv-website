@@ -20,7 +20,8 @@ Current structure (group → collection → routes):
     `past-rides/` rather than their own subfolder (real ride dates)
   - `wichita-trip` — 2-day Wichita Mountains trip (completed, real ride dates)
 - `future-rides` (**Future Rides**)
-  - `bucket-list-routes` — planned/reference routes, not yet ridden (`date: null`)
+  - 46 planned/reference routes (`date: null`) sit directly on this group (no collection
+    sub-heading in the sidebar) — loose `.gpx` files directly under `future-rides/`
   - `trans-america-trail` — TAT general/numbered sections (`date: null`)
   - `trans-america-trail-la` — TAT LA section, lives in `trans-america-trail/la-section/`
     on disk (`date: null`)
@@ -39,6 +40,12 @@ the folder layout.
 - `groups[]`
   - `id` — unique group slug
   - `title` — shown as the top-level heading in the sidebar and Download page
+  - `defaultColor` — hex color used for routes placed directly in this group's `routes[]` (see
+    below) that don't set their own `color`. Unused if the group has no such routes.
+  - `routes[]` — **optional.** Routes that sit directly under this group with no collection
+    sub-heading in the sidebar (e.g. `future-rides`'s 46 bucket-list routes). Same route schema
+    as `collections[].routes[]` below, except there's no `collectionId` (omit it) and the color
+    fallback is the group's own `defaultColor` instead of a collection's.
   - `collections[]`
     - `id` — unique collection slug (doesn't have to match a real folder name — see above)
     - `title`, `description` — shown in the sidebar
@@ -51,7 +58,7 @@ the folder layout.
         when the file is an actual recorded track (many sequential timestamped trackpoints) — planning
         tools (e.g. "DMD HUB GPX Planner", mymaps exports) sometimes stamp a single `<time>` that's just
         the file's creation/export time, not a ride date.
-      - `collectionId` — must match the parent collection's `id`
+      - `collectionId` — must match the parent collection's `id` (omitted for group-level routes)
       - `file` — path to the `.gpx` file, **relative to the site's base URL**, e.g.
         `gpx/<group-slug>/<collection-slug>/<route-slug>.gpx` (or wherever it actually lives)
       - `color` — hex override, or `null` to fall back to `defaultColor`

@@ -25,12 +25,14 @@ raw `.gpx` files it points to. There's no database and no admin UI for this — 
 manifest and the GPX files directly, commit, and push.
 
 Three levels of nesting: **group** → **collection** → **route** (e.g. "Past Rides" →
-"Arkansas Trip" → "Arkansas Trip Day 1"). The on-disk folder structure generally mirrors
-this, but the manifest's `file` path is always the source of truth, not the folder layout —
-a collection's files don't strictly have to live in a folder matching its `id` (see
-[`public/gpx/README.md`](./public/gpx/README.md) for the real, slightly messier current
-layout, e.g. "Day Rides" routes sitting loose in a group folder with no collection subfolder
-of their own, and the TAT collection split across subfolders).
+"Arkansas Trip" → "Arkansas Trip Day 1"). A group can also hold routes directly, with no
+collection in between — no sub-heading shows up in the sidebar for these (e.g. "Future
+Rides" has 46 routes sitting directly on the group). The on-disk folder structure generally
+mirrors the collection nesting, but the manifest's `file` path is always the source of
+truth, not the folder layout — a collection's files don't strictly have to live in a folder
+matching its `id` (see [`public/gpx/README.md`](./public/gpx/README.md) for the real,
+slightly messier current layout, e.g. "Day Rides" routes sitting loose in a group folder
+with no collection subfolder of their own, and the TAT collection split across subfolders).
 
 ```
 public/gpx/
@@ -47,21 +49,33 @@ public/gpx/
   "schemaVersion": 2,
   "groups": [
     {
-      "id": "past-rides", // unique group slug
-      "title": "Past Rides", // shown as the top-level heading
+      "id": "future-rides", // unique group slug
+      "title": "Future Rides", // shown as the top-level heading
+      "defaultColor": "#3b82f6", // fallback color for "routes" below; unused if there are none
+      "routes": [
+        // optional: routes with no collection sub-heading, shown directly under the group
+        {
+          "id": "example-planned-route", // unique across the whole manifest
+          "title": "Example Planned Route",
+          "date": null, // null = not yet ridden / unknown
+          // no "collectionId" - this route isn't inside any collection
+          "file": "gpx/future-rides/example-planned-route.gpx", // relative to BASE_URL
+          "color": null, // hex override, or null to use the group's defaultColor
+        },
+      ],
       "collections": [
         {
-          "id": "arkansas-trip", // unique, matches the folder name
-          "title": "Arkansas Trip", // shown in the sidebar
+          "id": "trans-america-trail", // unique, matches the folder name
+          "title": "Trans America Trail", // shown in the sidebar
           "description": "",
           "defaultColor": "#22c55e", // hex color for routes that don't override it
           "routes": [
             {
-              "id": "arkansas-trip-day-1", // unique across the whole manifest
-              "title": "Arkansas Trip Day 1",
-              "date": "2026-08-26", // ISO YYYY-MM-DD, or null (see below)
-              "collectionId": "arkansas-trip", // must match the parent collection's id
-              "file": "gpx/past-rides/arkansas-trip/arkansas-trip-day-1.gpx", // relative to BASE_URL
+              "id": "tat-section-1", // unique across the whole manifest
+              "title": "TAT Section 1",
+              "date": null, // ISO YYYY-MM-DD, or null (see below)
+              "collectionId": "trans-america-trail", // must match the parent collection's id
+              "file": "gpx/future-rides/trans-america-trail/tat-section-1.gpx", // relative to BASE_URL
               "color": null, // hex override, or null to use defaultColor
             },
           ],
@@ -86,7 +100,9 @@ one `<time>` that's just the file's export time, not a ride date.
    `colorado-1200.gpx`).
 2. Add an entry for it in that collection's `routes[]` in `manifest.json` (schema above),
    with `file` matching exactly where you put it. `id` must be unique across the _entire_
-   manifest, not just within its collection.
+   manifest, not just within its collection. If it doesn't belong in any collection, add it
+   straight to its group's own `routes[]` instead (and omit `collectionId`) — it'll show up
+   directly under the group heading with no sub-heading.
 3. Run `npm run dev`, find it in the sidebar, toggle it on, and confirm it renders and
    downloads correctly before committing.
 
@@ -104,8 +120,8 @@ one `<time>` that's just the file's export time, not a ride date.
 
 Add a new object to `manifest.json`'s top-level `groups[]` array: a unique `id`, a `title`
 (shown as the heading in the sidebar and Download page), and a `collections[]` array built
-the same way as above. A group with no collections in it is valid but pointless — add at
-least one collection to it.
+the same way as above (an empty array is fine if the group only has group-level `routes[]`,
+and vice versa — just don't leave both empty, or the group is pointless).
 
 ### Removing a route
 

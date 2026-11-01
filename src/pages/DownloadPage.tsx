@@ -41,6 +41,7 @@ export function DownloadPage() {
   const routeLookup = useMemo(() => {
     const map = new Map<string, ManifestRoute>();
     manifest?.groups.forEach((group) => {
+      group.routes?.forEach((route) => map.set(route.id, route));
       group.collections.forEach((collection) => {
         collection.routes.forEach((route) => map.set(route.id, route));
       });
@@ -90,7 +91,7 @@ export function DownloadPage() {
   }
 
   function groupRoutes(group: ManifestGroup): ManifestRoute[] {
-    return group.collections.flatMap((c) => c.routes);
+    return [...(group.routes ?? []), ...group.collections.flatMap((c) => c.routes)];
   }
 
   return (
@@ -136,6 +137,34 @@ export function DownloadPage() {
                 {zippingId === group.id ? 'Zipping…' : 'Download All (.zip)'}
               </button>
             </div>
+
+            {group.routes && group.routes.length > 0 && (
+              <ul className="mt-4 pl-4">
+                {group.routes.map((route) => (
+                  <li
+                    key={route.id}
+                    className="flex items-center justify-between gap-3 border-b border-border/50 py-1.5 text-sm"
+                  >
+                    <label className="flex flex-1 cursor-pointer items-center gap-3">
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.has(route.id)}
+                        onChange={() => toggleRoute(route.id)}
+                        className="h-4 w-4 cursor-pointer accent-accent"
+                      />
+                      <span className="text-gray-300">{route.title}</span>
+                    </label>
+                    <a
+                      href={`${import.meta.env.BASE_URL}${route.file}`}
+                      download={`${route.id}.gpx`}
+                      className="rounded-md bg-surface-raised px-2 py-0.5 text-xs text-gray-100 transition-colors hover:bg-accent hover:text-black"
+                    >
+                      Download
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             {group.collections.map((collection) => (
               <div key={collection.id} className="mt-4 pl-4">

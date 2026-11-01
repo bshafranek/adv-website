@@ -40,6 +40,12 @@ export function MapView({
   const routeLookup = useMemo(() => {
     const map = new Map<string, { file: string; color: string }>();
     manifest?.groups.forEach((group) => {
+      group.routes?.forEach((route) => {
+        map.set(route.id, {
+          file: route.file,
+          color: routeState[route.id]?.color ?? route.color ?? group.defaultColor ?? '#3b82f6',
+        });
+      });
       group.collections.forEach((collection) => {
         collection.routes.forEach((route) => {
           map.set(route.id, {

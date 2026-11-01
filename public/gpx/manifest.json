@@ -92,382 +92,6 @@
                        "title":  "Future Rides",
                        "collections":  [
                                            {
-                                               "id":  "bucket-list-routes",
-                                               "title":  "Bucket List Routes",
-                                               "description":  "",
-                                               "defaultColor":  "#3b82f6",
-                                               "routes":  [
-                                                              {
-                                                                  "id":  "washington-to-deadhorse",
-                                                                  "title":  "Washington to Deadhorse",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/washington-to-deadhorse.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "arkansas-backcountry-adventure-trail",
-                                                                  "title":  "Arkansas Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/arkansas-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "yukon-to-seattle",
-                                                                  "title":  "Yukon to Seattle",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/yukon-to-seattle.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "baja-california-peninsula-loop",
-                                                                  "title":  "Baja California Peninsula Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/baja-california-peninsula-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "baja-san-pedro-martir-loop",
-                                                                  "title":  "Baja San Pedro Martir Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/baja-san-pedro-martir-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "bahia-de-los-angeles-loop",
-                                                                  "title":  "Bahia de los Angeles Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/bahia-de-los-angeles-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "bc-kootenay-rockies",
-                                                                  "title":  "BC Kootenay Rockies",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/bc-kootenay-rockies.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "british-columbia-backcountry-discovery-route",
-                                                                  "title":  "British Columbia Backcountry Discovery Route",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/british-columbia-backcountry-discovery-route.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "california-backcountry-adventure-trail",
-                                                                  "title":  "California Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/california-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "far-northern-california-loop",
-                                                                  "title":  "Far Northern California Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/far-northern-california-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "colorado-rockies-loop",
-                                                                  "title":  "Colorado Rockies Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/colorado-rockies-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "colorado-backcountry-adventure-trail",
-                                                                  "title":  "Colorado Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/colorado-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "copper-canyon",
-                                                                  "title":  "Copper Canyon",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/copper-canyon.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "southern-bc-backcountry-adventure-trail",
-                                                                  "title":  "Southern BC Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/southern-bc-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "grand-canyon-zion-bryce-loop",
-                                                                  "title":  "Grand Canyon, Zion and Bryce Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/grand-canyon-zion-bryce-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "grand-canyon-zion-moab-loop",
-                                                                  "title":  "Grand Canyon, Zion and Moab Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/grand-canyon-zion-moab-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "connecticut-to-labrador",
-                                                                  "title":  "Connecticut to Labrador",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/connecticut-to-labrador.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "british-columbia-to-san-diego",
-                                                                  "title":  "British Columbia to San Diego",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/british-columbia-to-san-diego.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "idaho-backcountry-adventure-trail",
-                                                                  "title":  "Idaho Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/idaho-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "kentucky-backcountry-adventure-trail",
-                                                                  "title":  "Kentucky Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/kentucky-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "lost-coast-loop",
-                                                                  "title":  "Lost Coast Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/lost-coast-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "mid-atlantic-backcountry-adventure-trail",
-                                                                  "title":  "Mid Atlantic Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/mid-atlantic-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "new-england-backcountry-adventure-trail",
-                                                                  "title":  "New England Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/new-england-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "central-nevada-loop",
-                                                                  "title":  "Central Nevada Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/central-nevada-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "southern-nevada-eastern-sierra-loop",
-                                                                  "title":  "Southern Nevada and Eastern Sierra Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/southern-nevada-eastern-sierra-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "new-continental-divide-adventure-route-canada",
-                                                                  "title":  "New Continental Divide Adventure Route Canada",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/new-continental-divide-adventure-route-canada.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "new-continental-divide-adventure-route-mexico",
-                                                                  "title":  "New Continental Divide Adventure Route Mexico",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/new-continental-divide-adventure-route-mexico.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "new-continental-divide-adventure-route-usa-section",
-                                                                  "title":  "New Continental Divide Adventure Route USA section",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/new-continental-divide-adventure-route-usa-section.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "north-georgia-backcountry-adventure-trail",
-                                                                  "title":  "North Georgia Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/north-georgia-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "oklahoma-adventure-trail",
-                                                                  "title":  "Oklahoma Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/oklahoma-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "olympic-peninsula",
-                                                                  "title":  "Olympic Peninsula",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/olympic-peninsula.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "alberta-to-new-mexico-continental-divide-route",
-                                                                  "title":  "Alberta to New Mexico Continental Divide Route",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/alberta-to-new-mexico-continental-divide-route.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "red-rock-discovery-trail",
-                                                                  "title":  "Red Rock Discovery Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/red-rock-discovery-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "route-66-motorcycle-route",
-                                                                  "title":  "Route 66 motorcycle route",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/route-66-motorcycle-route.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "southern-appalachian-backcountry-adventure-trail",
-                                                                  "title":  "Southern Appalachian Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/southern-appalachian-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "south-carolina-backcountry-adventure-trail",
-                                                                  "title":  "South Carolina Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/south-carolina-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "southern-california-sierra-nevada-loop",
-                                                                  "title":  "Southern California and Sierra Nevada Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/southern-california-sierra-nevada-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "new-york-to-san-francisco",
-                                                                  "title":  "New York to San Francisco",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/new-york-to-san-francisco.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "southern-california-desert-loop",
-                                                                  "title":  "Southern California Desert Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/southern-california-desert-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "texas-backcountry-adventure-trail",
-                                                                  "title":  "Texas Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/texas-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "utah-backcountry-adventure-trail",
-                                                                  "title":  "Utah Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/utah-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "wichita-mountains",
-                                                                  "title":  "Wichita Mountains",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/wichita-mountains.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "wisconsin-backcountry-adventure-trail",
-                                                                  "title":  "Wisconsin Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/wisconsin-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "wyoming-backcountry-adventure-trail",
-                                                                  "title":  "Wyoming Backcountry Adventure Trail",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/wyoming-backcountry-adventure-trail.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "jackson-hole-loop",
-                                                                  "title":  "Jackson Hole Loop",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/jackson-hole-loop.gpx",
-                                                                  "color":  null
-                                                              },
-                                                              {
-                                                                  "id":  "central-valley-to-yosemite",
-                                                                  "title":  "Central Valley to Yosemite",
-                                                                  "date":  null,
-                                                                  "collectionId":  "bucket-list-routes",
-                                                                  "file":  "gpx/future-rides/bucket-list-routes/central-valley-to-yosemite.gpx",
-                                                                  "color":  null
-                                                              }
-                                                          ]
-                                           },
-                                           {
                                                "id":  "trans-america-trail",
                                                "title":  "Trans America Trail (TAT)",
                                                "description":  "",
@@ -2307,7 +1931,332 @@
                                                               }
                                                           ]
                                            }
-                                       ]
+                                       ],
+                       "defaultColor":  "#3b82f6",
+                       "routes":  [
+                                      {
+                                          "id":  "washington-to-deadhorse",
+                                          "title":  "Washington to Deadhorse",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/washington-to-deadhorse.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "arkansas-backcountry-adventure-trail",
+                                          "title":  "Arkansas Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/arkansas-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "yukon-to-seattle",
+                                          "title":  "Yukon to Seattle",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/yukon-to-seattle.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "baja-california-peninsula-loop",
+                                          "title":  "Baja California Peninsula Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/baja-california-peninsula-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "baja-san-pedro-martir-loop",
+                                          "title":  "Baja San Pedro Martir Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/baja-san-pedro-martir-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "bahia-de-los-angeles-loop",
+                                          "title":  "Bahia de los Angeles Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/bahia-de-los-angeles-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "bc-kootenay-rockies",
+                                          "title":  "BC Kootenay Rockies",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/bc-kootenay-rockies.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "british-columbia-backcountry-discovery-route",
+                                          "title":  "British Columbia Backcountry Discovery Route",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/british-columbia-backcountry-discovery-route.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "california-backcountry-adventure-trail",
+                                          "title":  "California Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/california-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "far-northern-california-loop",
+                                          "title":  "Far Northern California Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/far-northern-california-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "colorado-rockies-loop",
+                                          "title":  "Colorado Rockies Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/colorado-rockies-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "colorado-backcountry-adventure-trail",
+                                          "title":  "Colorado Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/colorado-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "copper-canyon",
+                                          "title":  "Copper Canyon",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/copper-canyon.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "southern-bc-backcountry-adventure-trail",
+                                          "title":  "Southern BC Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/southern-bc-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "grand-canyon-zion-bryce-loop",
+                                          "title":  "Grand Canyon, Zion and Bryce Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/grand-canyon-zion-bryce-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "grand-canyon-zion-moab-loop",
+                                          "title":  "Grand Canyon, Zion and Moab Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/grand-canyon-zion-moab-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "connecticut-to-labrador",
+                                          "title":  "Connecticut to Labrador",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/connecticut-to-labrador.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "british-columbia-to-san-diego",
+                                          "title":  "British Columbia to San Diego",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/british-columbia-to-san-diego.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "idaho-backcountry-adventure-trail",
+                                          "title":  "Idaho Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/idaho-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "kentucky-backcountry-adventure-trail",
+                                          "title":  "Kentucky Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/kentucky-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "lost-coast-loop",
+                                          "title":  "Lost Coast Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/lost-coast-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "mid-atlantic-backcountry-adventure-trail",
+                                          "title":  "Mid Atlantic Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/mid-atlantic-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "new-england-backcountry-adventure-trail",
+                                          "title":  "New England Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/new-england-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "central-nevada-loop",
+                                          "title":  "Central Nevada Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/central-nevada-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "southern-nevada-eastern-sierra-loop",
+                                          "title":  "Southern Nevada and Eastern Sierra Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/southern-nevada-eastern-sierra-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "new-continental-divide-adventure-route-canada",
+                                          "title":  "New Continental Divide Adventure Route Canada",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/new-continental-divide-adventure-route-canada.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "new-continental-divide-adventure-route-mexico",
+                                          "title":  "New Continental Divide Adventure Route Mexico",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/new-continental-divide-adventure-route-mexico.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "new-continental-divide-adventure-route-usa-section",
+                                          "title":  "New Continental Divide Adventure Route USA section",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/new-continental-divide-adventure-route-usa-section.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "north-georgia-backcountry-adventure-trail",
+                                          "title":  "North Georgia Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/north-georgia-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "oklahoma-adventure-trail",
+                                          "title":  "Oklahoma Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/oklahoma-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "olympic-peninsula",
+                                          "title":  "Olympic Peninsula",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/olympic-peninsula.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "alberta-to-new-mexico-continental-divide-route",
+                                          "title":  "Alberta to New Mexico Continental Divide Route",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/alberta-to-new-mexico-continental-divide-route.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "red-rock-discovery-trail",
+                                          "title":  "Red Rock Discovery Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/red-rock-discovery-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "route-66-motorcycle-route",
+                                          "title":  "Route 66 motorcycle route",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/route-66-motorcycle-route.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "southern-appalachian-backcountry-adventure-trail",
+                                          "title":  "Southern Appalachian Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/southern-appalachian-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "south-carolina-backcountry-adventure-trail",
+                                          "title":  "South Carolina Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/south-carolina-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "southern-california-sierra-nevada-loop",
+                                          "title":  "Southern California and Sierra Nevada Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/southern-california-sierra-nevada-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "new-york-to-san-francisco",
+                                          "title":  "New York to San Francisco",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/new-york-to-san-francisco.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "southern-california-desert-loop",
+                                          "title":  "Southern California Desert Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/southern-california-desert-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "texas-backcountry-adventure-trail",
+                                          "title":  "Texas Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/texas-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "utah-backcountry-adventure-trail",
+                                          "title":  "Utah Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/utah-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "wichita-mountains",
+                                          "title":  "Wichita Mountains",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/wichita-mountains.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "wisconsin-backcountry-adventure-trail",
+                                          "title":  "Wisconsin Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/wisconsin-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "wyoming-backcountry-adventure-trail",
+                                          "title":  "Wyoming Backcountry Adventure Trail",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/wyoming-backcountry-adventure-trail.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "jackson-hole-loop",
+                                          "title":  "Jackson Hole Loop",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/jackson-hole-loop.gpx",
+                                          "color":  null
+                                      },
+                                      {
+                                          "id":  "central-valley-to-yosemite",
+                                          "title":  "Central Valley to Yosemite",
+                                          "date":  null,
+                                          "file":  "gpx/future-rides/central-valley-to-yosemite.gpx",
+                                          "color":  null
+                                      }
+                                  ]
                    }
                ]
 }

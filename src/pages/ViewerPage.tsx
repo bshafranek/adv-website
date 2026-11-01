@@ -24,6 +24,8 @@ export function ViewerPage() {
   const activeRoute = useMemo(() => {
     if (!manifest || !activeRouteId) return null;
     for (const group of manifest.groups) {
+      const ungroupedRoute = group.routes?.find((r) => r.id === activeRouteId);
+      if (ungroupedRoute) return ungroupedRoute;
       for (const collection of group.collections) {
         const route = collection.routes.find((r) => r.id === activeRouteId);
         if (route) return route;
