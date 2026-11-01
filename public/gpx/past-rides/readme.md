@@ -1,8 +1,5 @@
 # Past Rides — Day Rides
 
-Two standalone day rides, not part of a multi-day trip, sitting loose directly under
-`past-rides/` rather than their own subfolder.
-
 ## Edmond Kingfisher Guthrie Loop — Sunday, August 23, 2026
 
 **125.7 mi, ~3.0 hrs riding time**
