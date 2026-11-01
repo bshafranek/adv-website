@@ -63,85 +63,83 @@ export function ActiveLayersList() {
           Check a route below to add it here, drag to reorder stacking.
         </p>
       ) : (
-        <div className="max-h-64 overflow-y-auto">
-          {routeOrder.map((id) => {
-            const info = routeLookup.get(id);
-            if (!info) return null;
-            const lineVisible = routeState[id]?.lineVisible ?? true;
-            const waypointsVisible = routeState[id]?.waypointsVisible ?? true;
-            // Default to true (assume it might have waypoints) until the file
-            // actually finishes parsing, so the icon doesn't flash disabled.
-            const hasWaypoints = (processedFiles[info.file]?.waypointCount ?? 1) > 0;
+        routeOrder.map((id) => {
+          const info = routeLookup.get(id);
+          if (!info) return null;
+          const lineVisible = routeState[id]?.lineVisible ?? true;
+          const waypointsVisible = routeState[id]?.waypointsVisible ?? true;
+          // Default to true (assume it might have waypoints) until the file
+          // actually finishes parsing, so the icon doesn't flash disabled.
+          const hasWaypoints = (processedFiles[info.file]?.waypointCount ?? 1) > 0;
 
-            return (
-              <div
-                key={id}
-                draggable
-                onDragStart={() => setDraggedId(id)}
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={() => handleDrop(id)}
-                onDragEnd={() => setDraggedId(null)}
-                className={`flex items-center gap-2 border-b border-border px-3 py-1.5 text-sm ${
-                  draggedId === id ? 'opacity-40' : ''
-                } ${activeRouteId === id ? 'bg-surface-raised' : ''}`}
+          return (
+            <div
+              key={id}
+              draggable
+              onDragStart={() => setDraggedId(id)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={() => handleDrop(id)}
+              onDragEnd={() => setDraggedId(null)}
+              className={`flex items-center gap-2 border-b border-border px-3 py-1.5 text-sm ${
+                draggedId === id ? 'opacity-40' : ''
+              } ${activeRouteId === id ? 'bg-surface-raised' : ''}`}
+            >
+              <span className="cursor-grab select-none text-gray-500" aria-hidden="true">
+                ⠿
+              </span>
+              <span
+                className="h-3 w-3 shrink-0 rounded-full border border-border"
+                style={{ backgroundColor: info.color }}
+              />
+              <button
+                type="button"
+                onClick={() => setActiveRoute(id)}
+                className={`flex-1 truncate text-left hover:text-accent ${
+                  activeRouteId === id ? 'font-semibold text-accent' : 'text-gray-200'
+                }`}
               >
-                <span className="cursor-grab select-none text-gray-500" aria-hidden="true">
-                  ⠿
-                </span>
-                <span
-                  className="h-3 w-3 shrink-0 rounded-full border border-border"
-                  style={{ backgroundColor: info.color }}
-                />
-                <button
-                  type="button"
-                  onClick={() => setActiveRoute(id)}
-                  className={`flex-1 truncate text-left hover:text-accent ${
-                    activeRouteId === id ? 'font-semibold text-accent' : 'text-gray-200'
-                  }`}
-                >
-                  {info.title}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setLineVisible(id, !lineVisible)}
-                  title={lineVisible ? 'Hide line' : 'Show line'}
-                  className={lineVisible ? 'text-accent' : 'text-gray-500 hover:text-gray-300'}
-                >
-                  <LineIcon />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => hasWaypoints && setWaypointsVisible(id, !waypointsVisible)}
-                  disabled={!hasWaypoints}
-                  title={
-                    !hasWaypoints
-                      ? 'This route has no waypoints'
-                      : waypointsVisible
-                        ? 'Hide waypoints'
-                        : 'Show waypoints'
-                  }
-                  className={
-                    !hasWaypoints
-                      ? 'cursor-not-allowed text-gray-700'
-                      : waypointsVisible
-                        ? 'text-accent'
-                        : 'text-gray-500 hover:text-gray-300'
-                  }
-                >
-                  <PinIcon />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setRouteVisible(id, false)}
-                  aria-label="Hide layer"
-                  className="text-gray-500 hover:text-red-400"
-                >
-                  ✕
-                </button>
-              </div>
-            );
-          })}
-        </div>
+                {info.title}
+              </button>
+              <button
+                type="button"
+                onClick={() => setLineVisible(id, !lineVisible)}
+                title={lineVisible ? 'Hide line' : 'Show line'}
+                className={lineVisible ? 'text-accent' : 'text-gray-500 hover:text-gray-300'}
+              >
+                <LineIcon />
+              </button>
+              <button
+                type="button"
+                onClick={() => hasWaypoints && setWaypointsVisible(id, !waypointsVisible)}
+                disabled={!hasWaypoints}
+                title={
+                  !hasWaypoints
+                    ? 'This route has no waypoints'
+                    : waypointsVisible
+                      ? 'Hide waypoints'
+                      : 'Show waypoints'
+                }
+                className={
+                  !hasWaypoints
+                    ? 'cursor-not-allowed text-gray-700'
+                    : waypointsVisible
+                      ? 'text-accent'
+                      : 'text-gray-500 hover:text-gray-300'
+                }
+              >
+                <PinIcon />
+              </button>
+              <button
+                type="button"
+                onClick={() => setRouteVisible(id, false)}
+                aria-label="Hide layer"
+                className="text-gray-500 hover:text-red-400"
+              >
+                ✕
+              </button>
+            </div>
+          );
+        })
       )}
     </div>
   );
