@@ -16,6 +16,13 @@ export interface GpxStats {
 // stop detection.
 const MOVING_SPEED_THRESHOLD_MPS = 0.5;
 
+// Consumer GPS elevation jitters by a few meters between points even on
+// flat ground. Summing every raw delta treats that noise as real climbing,
+// inflating gain/loss by an order of magnitude on long tracks. Only count a
+// change once it's moved this far from the last registered high/low point -
+// the same "hysteresis"/deadband approach Strava and Garmin use.
+const ELEVATION_NOISE_THRESHOLD_METERS = 3;
+
 export function computeGpxStats(points: GpxTrackPoint[]): GpxStats {
   let totalDistanceMeters = 0;
   let movingTimeSeconds = 0;
@@ -24,6 +31,7 @@ export function computeGpxStats(points: GpxTrackPoint[]): GpxStats {
   let maxSpeedMetersPerSecond = 0;
   let minAltitudeMeters: number | null = null;
   let maxAltitudeMeters: number | null = null;
+  let elevationBaseline: number | null = null;
 
   for (let i = 0; i < points.length; i++) {
     const point = points[i];
@@ -33,18 +41,25 @@ export function computeGpxStats(points: GpxTrackPoint[]): GpxStats {
         minAltitudeMeters === null ? point.elevation : Math.min(minAltitudeMeters, point.elevation);
       maxAltitudeMeters =
         maxAltitudeMeters === null ? point.elevation : Math.max(maxAltitudeMeters, point.elevation);
+
+      if (elevationBaseline === null) {
+        elevationBaseline = point.elevation;
+      } else {
+        const delta = point.elevation - elevationBaseline;
+        if (delta >= ELEVATION_NOISE_THRESHOLD_METERS) {
+          elevationGainMeters += delta;
+          elevationBaseline = point.elevation;
+        } else if (delta <= -ELEVATION_NOISE_THRESHOLD_METERS) {
+          elevationLossMeters += -delta;
+          elevationBaseline = point.elevation;
+        }
+      }
     }
 
     if (i === 0) continue;
     const prev = points[i - 1];
     const segmentDistanceMeters = haversineDistance(prev.lat, prev.lon, point.lat, point.lon);
     totalDistanceMeters += segmentDistanceMeters;
-
-    if (prev.elevation !== null && point.elevation !== null) {
-      const delta = point.elevation - prev.elevation;
-      if (delta > 0) elevationGainMeters += delta;
-      else elevationLossMeters += -delta;
-    }
 
     if (prev.time && point.time) {
       const seconds = (new Date(point.time).getTime() - new Date(prev.time).getTime()) / 1000;
