@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Southern California 6 Days</name>
+    <name>Southern California and Sierra Nevada Loop</name>
     <trkseg>
       <trkpt lat="33.500533" lon="-117.661815"/>
       <trkpt lat="33.515210" lon="-117.565212"/>

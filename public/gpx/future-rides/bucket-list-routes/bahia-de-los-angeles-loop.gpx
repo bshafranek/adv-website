@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Bay of LA</name>
+    <name>Bahia de los Angeles Loop</name>
     <trkseg>
       <trkpt lat="32.544724" lon="-117.035609"/>
       <trkpt lat="32.542424" lon="-117.030879"/>

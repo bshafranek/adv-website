@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Wisconsin Backways Adventure Trail</name>
+    <name>Wisconsin Backcountry Adventure Trail</name>
     <trkseg>
       <trkpt lat="42.624222" lon="-90.590860"/>
       <trkpt lat="42.620732" lon="-90.652580"/>

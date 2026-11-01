@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Original Great Continental Divide Motorcycle Route</name>
+    <name>Alberta to New Mexico Continental Divide Route</name>
     <trkseg>
       <trkpt lat="51.200688" lon="-115.597522"/>
       <trkpt lat="51.194444" lon="-115.583982"/>

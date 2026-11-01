@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Kentucky Backways Adventure Trail</name>
+    <name>Kentucky Backcountry Adventure Trail</name>
     <trkseg>
       <trkpt lat="37.622818" lon="-82.166215"/>
       <trkpt lat="37.622138" lon="-82.180165"/>

@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Mid Atlantic Backways Adventure Trail</name>
+    <name>Mid Atlantic Backcountry Adventure Trail</name>
     <trkseg>
       <trkpt lat="36.634050" lon="-81.783651"/>
       <trkpt lat="36.616509" lon="-81.755877"/>

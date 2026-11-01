@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Lost Coast 16</name>
+    <name>Lost Coast Loop</name>
     <trkseg>
       <trkpt lat="37.799581" lon="-122.438291"/>
       <trkpt lat="37.808148" lon="-122.476433"/>

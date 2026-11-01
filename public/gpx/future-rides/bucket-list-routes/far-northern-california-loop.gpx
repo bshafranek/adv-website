@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>California Northwest Passage</name>
+    <name>Far Northern California Loop</name>
     <trkseg>
       <trkpt lat="37.704416" lon="-121.741196"/>
       <trkpt lat="37.701666" lon="-121.773566"/>

@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Utah Backways Adventure Trail</name>
+    <name>Utah Backcountry Adventure Trail</name>
     <trkseg>
       <trkpt lat="36.998317" lon="-110.175779"/>
       <trkpt lat="37.151038" lon="-109.856792"/>

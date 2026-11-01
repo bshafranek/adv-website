@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Trans America Backcountry Route</name>
+    <name>New York to San Francisco</name>
     <trkseg>
       <trkpt lat="40.693353" lon="-74.056802"/>
       <trkpt lat="40.708895" lon="-74.042616"/>

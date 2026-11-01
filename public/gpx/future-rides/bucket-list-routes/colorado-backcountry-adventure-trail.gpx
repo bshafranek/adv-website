@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Colorado Backways Adventure Trail</name>
+    <name>Colorado Backcountry Adventure Trail</name>
     <trkseg>
       <trkpt lat="37.440717" lon="-108.539850"/>
       <trkpt lat="37.525432" lon="-108.468198"/>

@@ -4,7 +4,7 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <trk>
-    <name>Idaho Backways Adventure Trail</name>
+    <name>Idaho Backcountry Adventure Trail</name>
     <trkseg>
       <trkpt lat="41.875205" lon="-115.430606"/>
       <trkpt lat="42.046615" lon="-115.393096"/>
