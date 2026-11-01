@@ -29,4 +29,12 @@ export const BASEMAPS: BasemapDefinition[] = [
     attribution: '&copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics',
     maxZoom: 19,
   },
+  {
+    id: 'gray',
+    name: 'Light Gray',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+    attribution:
+      '&copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors, and the GIS User Community',
+    maxZoom: 16,
+  },
 ];

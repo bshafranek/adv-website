@@ -23,3 +23,20 @@ export function PinIcon({ size = 14 }: { size?: number }) {
     </svg>
   );
 }
+
+export function StackIcon({ size = 14 }: { size?: number }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M12 3 2 9l10 6 10-6-10-6z" strokeLinejoin="round" />
+      <path d="M2 15l10 6 10-6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M2 12l10 6 10-6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}

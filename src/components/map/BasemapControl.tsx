@@ -1,6 +1,7 @@
+import { useEffect, useRef, useState } from 'react';
 import { BASEMAPS } from '../../constants/basemaps';
+import { StackIcon } from '../icons/LayerIcons';
 
-// TODO: wire selected basemap into MapView's active TileLayer.
 export function BasemapControl({
   activeId,
   onChange,
@@ -8,21 +9,59 @@ export function BasemapControl({
   activeId: string;
   onChange: (id: string) => void;
 }) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const activeBasemap = BASEMAPS.find((b) => b.id === activeId) ?? BASEMAPS[0];
+
+  useEffect(() => {
+    if (!open) return;
+    function handlePointerDown(event: MouseEvent) {
+      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handlePointerDown);
+    return () => document.removeEventListener('mousedown', handlePointerDown);
+  }, [open]);
+
   return (
-    <div className="flex gap-1 rounded-md border border-border bg-surface p-1 text-xs">
-      {BASEMAPS.map((basemap) => (
-        <button
-          key={basemap.id}
-          onClick={() => onChange(basemap.id)}
-          className={`rounded px-2 py-1 ${
-            activeId === basemap.id
-              ? 'bg-accent text-black'
-              : 'text-gray-300 hover:bg-surface-raised'
-          }`}
+    <div ref={rootRef} className="relative text-xs">
+      <button
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className="flex items-center gap-1.5 rounded-md border border-border bg-surface px-2 py-1.5 text-gray-200 hover:bg-surface-raised"
+      >
+        <StackIcon />
+        <span>{activeBasemap.name}</span>
+      </button>
+      {open && (
+        <div
+          role="listbox"
+          className="absolute right-0 z-10 mt-1 w-32 overflow-hidden rounded-md border border-border bg-surface shadow-lg"
         >
-          {basemap.name}
-        </button>
-      ))}
+          {BASEMAPS.map((basemap) => (
+            <button
+              key={basemap.id}
+              type="button"
+              role="option"
+              aria-selected={activeId === basemap.id}
+              onClick={() => {
+                onChange(basemap.id);
+                setOpen(false);
+              }}
+              className={`block w-full px-3 py-1.5 text-left ${
+                activeId === basemap.id
+                  ? 'bg-accent text-black'
+                  : 'text-gray-300 hover:bg-surface-raised'
+              }`}
+            >
+              {basemap.name}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
