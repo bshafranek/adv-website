@@ -21,35 +21,50 @@ npm run format   # format with Prettier
 ## How routes are organized
 
 Everything the app displays comes from one file, **`public/gpx/manifest.json`**, plus the
-raw `.gpx` files it points to under `public/gpx/<collection-slug>/`. There's no database and
-no admin UI for this — you edit the manifest and the GPX files directly, commit, and push.
+raw `.gpx` files it points to. There's no database and no admin UI for this — you edit the
+manifest and the GPX files directly, commit, and push.
+
+Three levels of nesting: **group** → **collection** → **route** (e.g. "Past Rides" →
+"Arkansas Trip" → "Arkansas Trip Day 1"). The on-disk folder structure generally mirrors
+this, but the manifest's `file` path is always the source of truth, not the folder layout —
+a collection's files don't strictly have to live in a folder matching its `id` (see
+[`public/gpx/README.md`](./public/gpx/README.md) for the real, slightly messier current
+layout, e.g. "Day Rides" routes sitting loose in a group folder with no collection subfolder
+of their own, and the TAT collection split across subfolders).
 
 ```
 public/gpx/
   manifest.json
-  <collection-slug>/
-    <route-slug>.gpx
+  <group-slug>/
+    <collection-slug>/
+      <route-slug>.gpx
 ```
 
 ### `manifest.json` schema
 
 ```jsonc
 {
-  "schemaVersion": 1,
-  "collections": [
+  "schemaVersion": 2,
+  "groups": [
     {
-      "id": "arkansas-trip", // unique, matches the folder name
-      "title": "Arkansas Trip", // shown in the sidebar
-      "description": "",
-      "defaultColor": "#22c55e", // hex color for routes that don't override it
-      "routes": [
+      "id": "past-rides", // unique group slug
+      "title": "Past Rides", // shown as the top-level heading
+      "collections": [
         {
-          "id": "arkansas-trip-day-1", // unique across the whole manifest
-          "title": "Arkansas Trip Day 1",
-          "date": "2026-08-26", // ISO YYYY-MM-DD, or null (see below)
-          "collectionId": "arkansas-trip", // must match the parent collection's id
-          "file": "gpx/arkansas-trip/arkansas-trip-day-1.gpx", // relative to BASE_URL
-          "color": null, // hex override, or null to use defaultColor
+          "id": "arkansas-trip", // unique, matches the folder name
+          "title": "Arkansas Trip", // shown in the sidebar
+          "description": "",
+          "defaultColor": "#22c55e", // hex color for routes that don't override it
+          "routes": [
+            {
+              "id": "arkansas-trip-day-1", // unique across the whole manifest
+              "title": "Arkansas Trip Day 1",
+              "date": "2026-08-26", // ISO YYYY-MM-DD, or null (see below)
+              "collectionId": "arkansas-trip", // must match the parent collection's id
+              "file": "gpx/past-rides/arkansas-trip/arkansas-trip-day-1.gpx", // relative to BASE_URL
+              "color": null, // hex override, or null to use defaultColor
+            },
+          ],
         },
       ],
     },
@@ -65,22 +80,32 @@ one `<time>` that's just the file's export time, not a ride date.
 
 ### Adding a new route
 
-1. Add the `.gpx` file at `public/gpx/<collection-slug>/<route-slug>.gpx`. Slugs are
+1. Add the `.gpx` file somewhere sensible under `public/gpx/` (typically
+   `<group-slug>/<collection-slug>/<route-slug>.gpx`, but see the note above). Slugs are
    lowercase, hyphen-separated, and filesystem/URL-safe (e.g. `Colorado 1200!.gpx` →
    `colorado-1200.gpx`).
-2. Add an entry for it in that collection's `routes[]` in `manifest.json` (schema above).
-   `id` must be unique across the _entire_ manifest, not just within its collection.
+2. Add an entry for it in that collection's `routes[]` in `manifest.json` (schema above),
+   with `file` matching exactly where you put it. `id` must be unique across the _entire_
+   manifest, not just within its collection.
 3. Run `npm run dev`, find it in the sidebar, toggle it on, and confirm it renders and
    downloads correctly before committing.
 
-### Adding a new collection (grouping)
+### Adding a new collection
 
-1. Create `public/gpx/<new-collection-slug>/` and add its `.gpx` files.
-2. Add a new object to `manifest.json`'s `collections[]` array (`id` matching the folder
-   name, plus `title`, `description`, `defaultColor`, and its `routes[]`).
+1. Add its `.gpx` files under `public/gpx/` somewhere (a new
+   `<group-slug>/<new-collection-slug>/` folder is the normal convention).
+2. Add a new object to the right group's `collections[]` array in `manifest.json` (`id`,
+   `title`, `description`, `defaultColor`, and its `routes[]` with correct `file` paths).
 3. Collections with more than 20 routes default to collapsed in the sidebar (see
    `AUTO_COLLAPSE_THRESHOLD` in `src/components/sidebar/CollectionList.tsx`) — this is
    automatic based on route count, not something you configure per collection.
+
+### Adding a new group
+
+Add a new object to `manifest.json`'s top-level `groups[]` array: a unique `id`, a `title`
+(shown as the heading in the sidebar and Download page), and a `collections[]` array built
+the same way as above. A group with no collections in it is valid but pointless — add at
+least one collection to it.
 
 ### Removing a route
 
@@ -89,9 +114,16 @@ one without the other either leaves a dead file nobody links to, or a broken man
 
 ### Removing a collection
 
-Delete the whole collection object (and all its routes) from `manifest.json`, then delete
-its `public/gpx/<collection-slug>/` folder. No other code changes are needed — the sidebar,
-map, and Download page are all driven entirely by `manifest.json`.
+Delete the whole collection object (and all its routes) from its group's `collections[]` in
+`manifest.json`, then delete its `.gpx` files from disk (check each route's `file` path —
+don't assume it has its own dedicated folder).
+
+### Removing a group
+
+Delete the whole group object (and everything nested under it — all its collections and
+their routes) from `manifest.json`'s `groups[]`, then delete each of those collections'
+`public/gpx/<collection-slug>/` folders. No other code changes are needed for any of the
+above — the sidebar, map, and Download page are all driven entirely by `manifest.json`.
 
 ### Downloading raw files in bulk
 
@@ -116,7 +148,8 @@ GitHub Actions** — only relevant again if the repo is ever recreated.)
 - **Very large tracks parse on the main thread.** Files with 100k+ points (a few of the
   real ride recordings are this big) can noticeably pause the UI while parsing; there's no
   background worker for this yet.
-- **The TAT collection alone has 227 routes.** If you're adding a lot of routes at once to
+- **The TAT is split across 3 collections** (general sections, LA section, NY section) under
+  the "Future Rides" group, totaling 227 routes — if you're adding a lot of routes at once to
   one collection, expect it to auto-collapse in the sidebar by default (see above).
 
 ## Tech stack

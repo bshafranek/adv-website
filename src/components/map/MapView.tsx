@@ -39,11 +39,13 @@ export function MapView({
 
   const routeLookup = useMemo(() => {
     const map = new Map<string, { file: string; color: string }>();
-    manifest?.collections.forEach((collection) => {
-      collection.routes.forEach((route) => {
-        map.set(route.id, {
-          file: route.file,
-          color: routeState[route.id]?.color ?? route.color ?? collection.defaultColor,
+    manifest?.groups.forEach((group) => {
+      group.collections.forEach((collection) => {
+        collection.routes.forEach((route) => {
+          map.set(route.id, {
+            file: route.file,
+            color: routeState[route.id]?.color ?? route.color ?? collection.defaultColor,
+          });
         });
       });
     });

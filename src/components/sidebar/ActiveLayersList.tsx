@@ -23,12 +23,14 @@ export function ActiveLayersList() {
 
   const routeLookup = useMemo(() => {
     const map = new Map<string, { title: string; color: string; file: string }>();
-    manifest?.collections.forEach((collection) => {
-      collection.routes.forEach((route) => {
-        map.set(route.id, {
-          title: route.title,
-          color: routeState[route.id]?.color ?? route.color ?? collection.defaultColor,
-          file: route.file,
+    manifest?.groups.forEach((group) => {
+      group.collections.forEach((collection) => {
+        collection.routes.forEach((route) => {
+          map.set(route.id, {
+            title: route.title,
+            color: routeState[route.id]?.color ?? route.color ?? collection.defaultColor,
+            file: route.file,
+          });
         });
       });
     });

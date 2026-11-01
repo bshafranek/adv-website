@@ -23,9 +23,11 @@ export function ViewerPage() {
 
   const activeRoute = useMemo(() => {
     if (!manifest || !activeRouteId) return null;
-    for (const collection of manifest.collections) {
-      const route = collection.routes.find((r) => r.id === activeRouteId);
-      if (route) return route;
+    for (const group of manifest.groups) {
+      for (const collection of group.collections) {
+        const route = collection.routes.find((r) => r.id === activeRouteId);
+        if (route) return route;
+      }
     }
     return null;
   }, [manifest, activeRouteId]);

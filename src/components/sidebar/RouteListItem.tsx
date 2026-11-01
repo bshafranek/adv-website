@@ -21,7 +21,7 @@ export function RouteListItem({
 }) {
   return (
     <div
-      className={`flex items-center justify-between gap-2 border-b border-border px-3 py-2 ${
+      className={`flex items-center justify-between gap-2 border-b border-border py-2 pl-8 pr-3 ${
         active ? 'bg-surface-raised' : ''
       }`}
     >

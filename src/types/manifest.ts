@@ -18,7 +18,13 @@ export interface ManifestCollection {
   routes: ManifestRoute[];
 }
 
+export interface ManifestGroup {
+  id: string;
+  title: string;
+  collections: ManifestCollection[];
+}
+
 export interface Manifest {
   schemaVersion: number;
-  collections: ManifestCollection[];
+  groups: ManifestGroup[];
 }

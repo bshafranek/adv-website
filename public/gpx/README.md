@@ -1,50 +1,75 @@
 # GPX Data Layout
 
-Raw ride tracks live here, grouped by trip collection:
+Raw ride tracks live here, grouped by trip collection, which are themselves grouped into
+top-level groups. The on-disk folder structure mirrors the manifest's group → collection
+nesting:
 
 ```
 public/gpx/
   manifest.json
-  <collection-slug>/
-    <route-slug>.gpx
+  <group-slug>/
+    <collection-slug>/
+      <route-slug>.gpx
 ```
 
-Current collections:
+Current structure (group → collection → routes):
 
-- `arkansas-trip` — multi-day Arkansas trip (completed, real ride dates)
-- `day-rides` — standalone completed day rides (real ride dates)
-- `bucket-list-routes` — planned/reference routes, not yet ridden (`date: null`)
-- `trans-america-trail` — TAT section library, not yet ridden (`date: null`)
+- `past-rides` (**Past Rides**)
+  - `arkansas-trip` — multi-day Arkansas trip (completed, real ride dates)
+  - `day-rides` — standalone completed day rides, loose `.gpx` files directly under
+    `past-rides/` rather than their own subfolder (real ride dates)
+  - `wichita-trip` — 2-day Wichita Mountains trip (completed, real ride dates)
+- `future-rides` (**Future Rides**)
+  - `bucket-list-routes` — planned/reference routes, not yet ridden (`date: null`)
+  - `trans-america-trail` — TAT general/numbered sections (`date: null`)
+  - `trans-america-trail-la` — TAT LA section, lives in `trans-america-trail/la-section/`
+    on disk (`date: null`)
+  - `trans-america-trail-ny` — TAT NY section, lives in `trans-america-trail/ny-section/`
+    on disk (`date: null`)
+
+Not every collection's folder name matches its `id` 1:1 — `trans-america-trail-la` and
+`trans-america-trail-ny` are subfolders _within_ `trans-america-trail/`, and `day-rides` has
+no folder of its own at all. The manifest's `file` path is always the source of truth, not
+the folder layout.
 
 ## manifest.json
 
-`manifest.json` lists every collection and route the app should load. Schema:
+`manifest.json` lists every group, collection, and route the app should load. Schema:
 
-- `collections[]`
-  - `id` — unique collection slug, matches the folder name under `public/gpx/`
-  - `title`, `description` — shown in the sidebar
-  - `defaultColor` — hex color used for routes in this collection that don't set their own `color`
-  - `routes[]`
-    - `id` — unique route slug
-    - `title`
-    - `date` — ISO `YYYY-MM-DD` the route was actually ridden, or `null` if it hasn't been ridden yet
-      (or the ride date isn't known). Only trust a GPX file's embedded `<time>` tags as a ride date
-      when the file is an actual recorded track (many sequential timestamped trackpoints) — planning
-      tools (e.g. "DMD HUB GPX Planner", mymaps exports) sometimes stamp a single `<time>` that's just
-      the file's creation/export time, not a ride date.
-    - `collectionId` — must match the parent collection's `id`
-    - `file` — path to the `.gpx` file, **relative to the site's base URL**, e.g. `gpx/<collection-slug>/<route-slug>.gpx`
-    - `color` — hex override, or `null` to fall back to `defaultColor`
+- `groups[]`
+  - `id` — unique group slug
+  - `title` — shown as the top-level heading in the sidebar and Download page
+  - `collections[]`
+    - `id` — unique collection slug (doesn't have to match a real folder name — see above)
+    - `title`, `description` — shown in the sidebar
+    - `defaultColor` — hex color used for routes in this collection that don't set their own `color`
+    - `routes[]`
+      - `id` — unique route slug (unique across the **entire** manifest, not just its collection)
+      - `title`
+      - `date` — ISO `YYYY-MM-DD` the route was actually ridden, or `null` if it hasn't been ridden yet
+        (or the ride date isn't known). Only trust a GPX file's embedded `<time>` tags as a ride date
+        when the file is an actual recorded track (many sequential timestamped trackpoints) — planning
+        tools (e.g. "DMD HUB GPX Planner", mymaps exports) sometimes stamp a single `<time>` that's just
+        the file's creation/export time, not a ride date.
+      - `collectionId` — must match the parent collection's `id`
+      - `file` — path to the `.gpx` file, **relative to the site's base URL**, e.g.
+        `gpx/<group-slug>/<collection-slug>/<route-slug>.gpx` (or wherever it actually lives)
+      - `color` — hex override, or `null` to fall back to `defaultColor`
 
 To add a real ride:
 
-1. Drop the `.gpx` file into `public/gpx/<collection-slug>/<route-slug>.gpx` (slug = lowercase,
+1. Drop the `.gpx` file wherever makes sense under `public/gpx/` (slug = lowercase,
    hyphen-separated, filesystem/URL-safe).
-2. Add (or update) the corresponding entry in `manifest.json`.
+2. Add (or update) the corresponding entry in `manifest.json`, with a `file` path that
+   matches exactly where you put it.
+
+To add a new group or collection, see the root [`README.md`](../../README.md)'s "How routes are
+organized" section.
 
 Code that loads `manifest.json` or a route's `file` path must prefix it with
 `import.meta.env.BASE_URL` (see `src/utils/manifest/loadManifest.ts`) so links keep
 working when the site is served from a GitHub Pages project subpath.
 
-Drag-and-drop local file import (planned) bypasses this manifest entirely — it loads
-a `.gpx` file directly from the user's machine without touching `public/gpx/`.
+Drag-and-drop local file import bypasses this manifest entirely — it loads a `.gpx` file
+directly from the user's machine without touching `public/gpx/` (view-only on the map, not
+part of any group/collection).
