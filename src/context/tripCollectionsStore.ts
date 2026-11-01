@@ -12,6 +12,7 @@ export interface TripCollectionsContextValue {
   routeOrder: string[];
   activeRouteId: string | null;
   setRouteVisible: (routeId: string, visible: boolean) => void;
+  setRoutesVisible: (routeIds: string[], visible: boolean) => void;
   setRouteColor: (routeId: string, color: string) => void;
   setWaypointsVisible: (routeId: string, visible: boolean) => void;
   setLineVisible: (routeId: string, visible: boolean) => void;

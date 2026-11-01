@@ -46,6 +46,29 @@ export function TripCollectionsProvider({ children }: { children: ReactNode }) {
           setActiveRouteId((prev) => (prev === routeId ? null : prev));
         }
       },
+      setRoutesVisible: (routeIds, visible) => {
+        setRouteState((prev) => {
+          const next = { ...prev };
+          for (const routeId of routeIds) {
+            next[routeId] = { ...withDefaults(prev[routeId]), visible };
+          }
+          return next;
+        });
+        // Same top-of-stack convention as setRouteVisible above, applied to the
+        // whole batch at once instead of one setRouteOrder call per route.
+        setRouteOrder((prev) => {
+          if (visible) {
+            const toAdd = routeIds.filter((id) => !prev.includes(id));
+            return [...prev, ...toAdd];
+          }
+          return prev.filter((id) => !routeIds.includes(id));
+        });
+        if (!visible) {
+          setActiveRouteId((prevActive) =>
+            prevActive && routeIds.includes(prevActive) ? null : prevActive,
+          );
+        }
+      },
       setRouteColor: (routeId, color) =>
         setRouteState((prev) => ({
           ...prev,

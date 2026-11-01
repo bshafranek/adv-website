@@ -10,8 +10,14 @@ const AUTO_COLLAPSE_THRESHOLD = 20;
 // TODO: drag-and-drop reordering of routes within/across collections.
 export function CollectionList() {
   const { manifest, loading, error } = useManifest();
-  const { routeState, activeRouteId, setRouteVisible, setRouteColor, setActiveRoute } =
-    useTripCollections();
+  const {
+    routeState,
+    activeRouteId,
+    setRouteVisible,
+    setRoutesVisible,
+    setRouteColor,
+    setActiveRoute,
+  } = useTripCollections();
   const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({});
   const [collapsedCollections, setCollapsedCollections] = useState<Record<string, boolean>>({});
 
@@ -68,31 +74,50 @@ export function CollectionList() {
                 const collapsed =
                   collapsedCollections[collection.id] ??
                   collection.routes.length > AUTO_COLLAPSE_THRESHOLD;
+                const collectionRouteIds = collection.routes.map((r) => r.id);
+                const visibleCount = collectionRouteIds.filter(
+                  (id) => routeState[id]?.visible,
+                ).length;
+                const allVisible =
+                  collectionRouteIds.length > 0 && visibleCount === collectionRouteIds.length;
+                const someVisible = visibleCount > 0 && !allVisible;
 
                 return (
                   <div key={collection.id}>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setCollapsedCollections((prev) => ({
-                          ...prev,
-                          [collection.id]: !collapsed,
-                        }))
-                      }
-                      className="flex w-full items-center justify-between py-1 pl-6 pr-3 text-xs font-semibold uppercase tracking-wide text-gray-500 hover:text-gray-300"
-                      aria-expanded={!collapsed}
-                    >
-                      <span>
-                        {collection.title}{' '}
-                        <span className="text-gray-600">({collection.routes.length})</span>
-                      </span>
-                      <span
-                        className="transition-transform duration-200"
-                        style={{ transform: collapsed ? 'rotate(180deg)' : 'none' }}
+                    <div className="flex items-center gap-2 pl-6 pr-3">
+                      <input
+                        type="checkbox"
+                        checked={allVisible}
+                        ref={(el) => {
+                          if (el) el.indeterminate = someVisible;
+                        }}
+                        onChange={() => setRoutesVisible(collectionRouteIds, !allVisible)}
+                        title="Show/hide all routes in this collection"
+                        className="h-3.5 w-3.5 shrink-0 cursor-pointer accent-accent"
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setCollapsedCollections((prev) => ({
+                            ...prev,
+                            [collection.id]: !collapsed,
+                          }))
+                        }
+                        className="flex flex-1 items-center justify-between py-1 text-xs font-semibold uppercase tracking-wide text-gray-500 hover:text-gray-300"
+                        aria-expanded={!collapsed}
                       >
-                        ⌃
-                      </span>
-                    </button>
+                        <span>
+                          {collection.title}{' '}
+                          <span className="text-gray-600">({collection.routes.length})</span>
+                        </span>
+                        <span
+                          className="transition-transform duration-200"
+                          style={{ transform: collapsed ? 'rotate(180deg)' : 'none' }}
+                        >
+                          ⌃
+                        </span>
+                      </button>
+                    </div>
                     {!collapsed &&
                       collection.routes.map((route) => (
                         <RouteListItem
