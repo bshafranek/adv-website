@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
+import { resolveRouteColor } from '../../utils/routeColor';
 import { RouteListItem } from './RouteListItem';
 
 // Collections with more routes than this default to collapsed, since some
@@ -71,7 +72,7 @@ export function CollectionList() {
                   key={route.id}
                   route={route}
                   visible={routeState[route.id]?.visible ?? false}
-                  color={routeState[route.id]?.color ?? route.color ?? group.defaultColor ?? '#3b82f6'}
+                  color={resolveRouteColor(route.id, route, routeState, group.defaultColor ?? '#3b82f6')}
                   active={activeRouteId === route.id}
                   onToggleVisible={(visible) => setRouteVisible(route.id, visible)}
                   onColorChange={(color) => setRouteColor(route.id, color)}
@@ -135,9 +136,12 @@ export function CollectionList() {
                           key={route.id}
                           route={route}
                           visible={routeState[route.id]?.visible ?? false}
-                          color={
-                            routeState[route.id]?.color ?? route.color ?? collection.defaultColor
-                          }
+                          color={resolveRouteColor(
+                            route.id,
+                            route,
+                            routeState,
+                            collection.defaultColor,
+                          )}
                           active={activeRouteId === route.id}
                           onToggleVisible={(visible) => setRouteVisible(route.id, visible)}
                           onColorChange={(color) => setRouteColor(route.id, color)}

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
 import { useGpxStatus } from '../../hooks/useGpxStatus';
+import { resolveRouteColor } from '../../utils/routeColor';
 import { LineIcon, PinIcon } from '../icons/LayerIcons';
 
 // routeOrder[0] is the top of the visual stack (rendered last/on top by
@@ -28,7 +29,7 @@ export function ActiveLayersList() {
       group.routes?.forEach((route) => {
         map.set(route.id, {
           title: route.title,
-          color: routeState[route.id]?.color ?? route.color ?? group.defaultColor ?? '#3b82f6',
+          color: resolveRouteColor(route.id, route, routeState, group.defaultColor ?? '#3b82f6'),
           file: route.file,
         });
       });
@@ -36,7 +37,7 @@ export function ActiveLayersList() {
         collection.routes.forEach((route) => {
           map.set(route.id, {
             title: route.title,
-            color: routeState[route.id]?.color ?? route.color ?? collection.defaultColor,
+            color: resolveRouteColor(route.id, route, routeState, collection.defaultColor),
             file: route.file,
           });
         });

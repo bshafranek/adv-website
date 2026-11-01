@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { BASEMAPS } from '../../constants/basemaps';
+import { useClickOutside } from '../../hooks/useClickOutside';
 import { StackIcon } from '../icons/LayerIcons';
 
 export function BasemapControl({
@@ -13,16 +14,7 @@ export function BasemapControl({
   const rootRef = useRef<HTMLDivElement>(null);
   const activeBasemap = BASEMAPS.find((b) => b.id === activeId) ?? BASEMAPS[0];
 
-  useEffect(() => {
-    if (!open) return;
-    function handlePointerDown(event: MouseEvent) {
-      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handlePointerDown);
-    return () => document.removeEventListener('mousedown', handlePointerDown);
-  }, [open]);
+  useClickOutside([rootRef], () => setOpen(false), open);
 
   return (
     <div ref={rootRef} className="relative text-xs">

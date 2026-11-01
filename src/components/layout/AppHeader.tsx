@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 function HamburgerIcon() {
   return (
@@ -37,22 +38,7 @@ export function AppHeader() {
     setMenuPos({ top: rect.bottom + 8, right: window.innerWidth - rect.right });
   }, [menuOpen]);
 
-  useEffect(() => {
-    if (!menuOpen) return;
-    function handleClickOutside(event: MouseEvent) {
-      const target = event.target as Node;
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(target) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(target)
-      ) {
-        setMenuOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [menuOpen]);
+  useClickOutside([menuRef, buttonRef], () => setMenuOpen(false), menuOpen);
 
   return (
     <header className="flex items-center justify-between border-b border-border bg-surface px-4 py-3">

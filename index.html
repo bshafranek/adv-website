@@ -10,10 +10,15 @@
       // the wrong theme while React mounts. Defaults to dark (matching
       // DEFAULT_SETTINGS.theme in src/types/settings.ts) unless the saved
       // settings explicitly say otherwise. Key must match SETTINGS_STORAGE_KEY.
+      // schemaVersion check must match DEFAULT_SETTINGS.schemaVersion - on a
+      // mismatch, SettingsContext discards the stored blob and falls back to
+      // defaults, so this has to make the same call pre-paint or a schema
+      // bump can flash the old theme for one frame before flipping back.
       (function () {
         try {
           var raw = localStorage.getItem('adv-website:settings');
-          var theme = raw ? JSON.parse(raw).theme : null;
+          var parsed = raw ? JSON.parse(raw) : null;
+          var theme = parsed && parsed.schemaVersion === 1 ? parsed.theme : null;
           document.documentElement.classList.toggle('dark', theme !== 'light');
         } catch (e) {
           document.documentElement.classList.add('dark');

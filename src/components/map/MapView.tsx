@@ -12,6 +12,7 @@ import { useManifest } from '../../hooks/useManifest';
 import { useTripCollections } from '../../hooks/useTripCollections';
 import { useSettings } from '../../hooks/useSettings';
 import { useGpxRoutes, type RouteRef } from '../../hooks/useGpxRoutes';
+import { resolveRouteColor } from '../../utils/routeColor';
 import type { LocalRoute } from '../../types/localRoute';
 
 const DEFAULT_CENTER: LatLngExpression = [39.8, -98.6];
@@ -45,14 +46,14 @@ export function MapView({
       group.routes?.forEach((route) => {
         map.set(route.id, {
           file: route.file,
-          color: routeState[route.id]?.color ?? route.color ?? group.defaultColor ?? '#3b82f6',
+          color: resolveRouteColor(route.id, route, routeState, group.defaultColor ?? '#3b82f6'),
         });
       });
       group.collections.forEach((collection) => {
         collection.routes.forEach((route) => {
           map.set(route.id, {
             file: route.file,
-            color: routeState[route.id]?.color ?? route.color ?? collection.defaultColor,
+            color: resolveRouteColor(route.id, route, routeState, collection.defaultColor),
           });
         });
       });
@@ -120,6 +121,20 @@ export function MapView({
     });
   }, [visibleRoutes]);
 
+  // Coalesces bursts of ref-attach-triggered resyncs (e.g. toggling on 100+
+  // routes at once mounts that many polylines in one tick) into a single
+  // deferred resyncStackOrder() call instead of one per attach, which would
+  // otherwise be an O(n^2) pile of bringToFront() calls.
+  const resyncScheduledRef = useRef(false);
+  const scheduleResync = useCallback(() => {
+    if (resyncScheduledRef.current) return;
+    resyncScheduledRef.current = true;
+    setTimeout(() => {
+      resyncScheduledRef.current = false;
+      resyncStackOrder();
+    }, 0);
+  }, [resyncStackOrder]);
+
   useEffect(() => {
     resyncStackOrder();
   }, [resyncStackOrder, routeData]);
@@ -183,7 +198,7 @@ export function MapView({
                   // its own effect, which runs after this ref callback - call
                   // bringToFront() here and it's a silent no-op since the
                   // layer isn't on the map yet. Defer past that.
-                  setTimeout(resyncStackOrder, 0);
+                  scheduleResync();
                 } else {
                   polylineRefs.current.delete(r.id);
                 }
