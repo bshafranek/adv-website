@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type DragEvent } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type DragEvent } from 'react';
 import { MapContainer, TileLayer, Polyline, Marker, Popup, CircleMarker } from 'react-leaflet';
 import type { LatLngExpression, Polyline as LeafletPolyline } from 'leaflet';
 import { BASEMAPS } from '../../constants/basemaps';
@@ -103,13 +103,23 @@ export function MapView({
   // Leaflet doesn't reorder a layer's DOM position just because React
   // re-renders it in a different array order, so stacking has to be driven
   // explicitly: bring each polyline to front in bottom-to-top order whenever
-  // the order changes or a route's data finishes loading.
+  // the order changes or a route's data finishes loading. A layer can also
+  // get re-attached to the map outside of that (e.g. React StrictMode's
+  // deliberate double-invoke of effects in dev re-runs react-leaflet's own
+  // mount effect, re-appending that layer's DOM node after ours already ran
+  // and silently undoing the fix), so also resync whenever any polyline ref
+  // actually attaches, not just when our own dependencies change.
   const polylineRefs = useRef(new Map<string, LeafletPolyline>());
-  useEffect(() => {
+
+  const resyncStackOrder = useCallback(() => {
     visibleRoutes.forEach((route) => {
       polylineRefs.current.get(route.id)?.bringToFront();
     });
-  }, [visibleRoutes, routeData]);
+  }, [visibleRoutes]);
+
+  useEffect(() => {
+    resyncStackOrder();
+  }, [resyncStackOrder, routeData]);
 
   const mapWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -166,6 +176,11 @@ export function MapView({
               ref={(instance) => {
                 if (instance) {
                   polylineRefs.current.set(r.id, instance);
+                  // react-leaflet attaches the underlying layer to the map in
+                  // its own effect, which runs after this ref callback - call
+                  // bringToFront() here and it's a silent no-op since the
+                  // layer isn't on the map yet. Defer past that.
+                  setTimeout(resyncStackOrder, 0);
                 } else {
                   polylineRefs.current.delete(r.id);
                 }
