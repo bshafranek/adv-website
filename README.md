@@ -173,3 +173,7 @@ GitHub Actions** — only relevant again if the repo is ever recreated.)
 React + Vite + TypeScript, `react-leaflet`/Leaflet for mapping, `@we-gold/gpxjs` for GPX
 parsing, Recharts for the elevation chart, Tailwind CSS v4 for styling, JSZip for bundling
 downloads. See [`CLAUDE.md`](./CLAUDE.md) for the original design spec this was built from.
+
+## License
+
+[MIT](./LICENSE) — use anything in this repo for any purpose.
