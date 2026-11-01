@@ -14,6 +14,11 @@ export function AboutPage() {
           management — runs in the browser, with no backend server.
         </p>
         <p>
+          It's where I keep track of two kinds of rides: the ones I've already taken, with real
+          recorded GPS tracks, and the ones still on my bucket list — planned or reference routes
+          I'd like to ride someday. Past Rides and Future Rides in the sidebar split the two apart.
+        </p>
+        <p>
           Built with React, Vite, Leaflet, and Tailwind CSS, and deployed as a static site on GitHub
           Pages via GitHub Actions.
         </p>
