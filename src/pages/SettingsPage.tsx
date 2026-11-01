@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSettings } from '../hooks/useSettings';
 import { BASEMAPS } from '../constants/basemaps';
 import { Card } from '../components/common/Card';
+import { Toggle } from '../components/common/Toggle';
 import type { Theme, UnitSystem } from '../types/settings';
 
 function RadioOption<T extends string>({
@@ -38,6 +39,8 @@ export function SettingsPage() {
     setDefaultBasemapId,
     setActiveRouteHighlightColor,
     setTheme,
+    setRideSummaryDefaultOpen,
+    setElevationProfileDefaultOpen,
     resetSettings,
   } = useSettings();
 
@@ -130,6 +133,25 @@ export function SettingsPage() {
               onChange={(value: Theme) => setTheme(value)}
             />
           </div>
+        </Card>
+
+        <Card title="Panel defaults">
+          <div className="flex flex-col gap-2">
+            <Toggle
+              checked={settings.rideSummaryDefaultOpen}
+              onChange={setRideSummaryDefaultOpen}
+              label="Ride Summary open by default"
+            />
+            <Toggle
+              checked={settings.elevationProfileDefaultOpen}
+              onChange={setElevationProfileDefaultOpen}
+              label="Elevation Profile open by default"
+            />
+          </div>
+          <p className="mt-2 text-xs text-gray-500">
+            Whether these panels start expanded or collapsed when you load the viewer. You can
+            still expand or collapse either one at any time — this just sets the starting state.
+          </p>
         </Card>
 
         <button

@@ -28,6 +28,10 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       setActiveRouteHighlightColor: (color) =>
         setSettings((prev) => ({ ...prev, activeRouteHighlightColor: color })),
       setTheme: (theme) => setSettings((prev) => ({ ...prev, theme })),
+      setRideSummaryDefaultOpen: (open) =>
+        setSettings((prev) => ({ ...prev, rideSummaryDefaultOpen: open })),
+      setElevationProfileDefaultOpen: (open) =>
+        setSettings((prev) => ({ ...prev, elevationProfileDefaultOpen: open })),
       resetSettings: () => setSettings(DEFAULT_SETTINGS),
     }),
     [settings],

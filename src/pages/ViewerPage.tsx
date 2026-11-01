@@ -9,6 +9,7 @@ import { SummaryCards } from '../components/dashboard/SummaryCards';
 import { CollapsiblePanel } from '../components/common/CollapsiblePanel';
 import { useManifest } from '../hooks/useManifest';
 import { useTripCollections } from '../hooks/useTripCollections';
+import { useSettings } from '../hooks/useSettings';
 import { useGpxRoute } from '../hooks/useGpxRoute';
 import { useGpxStatus } from '../hooks/useGpxStatus';
 import { computeGpxStats } from '../utils/gpx/gpxStats';
@@ -20,6 +21,9 @@ import type { LocalRoute } from '../types/localRoute';
 export function ViewerPage() {
   const { manifest } = useManifest();
   const { activeRouteId } = useTripCollections();
+  const {
+    settings: { rideSummaryDefaultOpen, elevationProfileDefaultOpen },
+  } = useSettings();
 
   const activeRoute = useMemo(() => {
     if (!manifest || !activeRouteId) return null;
@@ -85,7 +89,7 @@ export function ViewerPage() {
         </>
       }
     >
-      <CollapsiblePanel title="Ride Summary" defaultOpen={false}>
+      <CollapsiblePanel title="Ride Summary" defaultOpen={rideSummaryDefaultOpen}>
         {activeRoute ? (
           <SummaryCards stats={stats} />
         ) : (
@@ -102,7 +106,11 @@ export function ViewerPage() {
           onFilesDropped={handleFilesDropped}
         />
       </div>
-      <CollapsiblePanel title="Elevation Profile" arrowWhenOpen="down" defaultOpen={false}>
+      <CollapsiblePanel
+        title="Elevation Profile"
+        arrowWhenOpen="down"
+        defaultOpen={elevationProfileDefaultOpen}
+      >
         <div className="px-4 pb-4">
           {activeRoute ? (
             <ElevationChart data={profile} onHover={handleHover} onClickPoint={handleClickPoint} />

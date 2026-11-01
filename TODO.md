@@ -16,8 +16,9 @@ Still-open ideas for more pages later:
 ## ~~Settings page~~ — done
 
 `/settings` (linked from the hamburger menu) controls unit system
-(imperial/metric), default basemap, active-route highlight color, and
-theme (dark/light, with a real light palette — not just a stub). Settings
+(imperial/metric), default basemap, active-route highlight color, theme
+(dark/light, with a real light palette — not just a stub), and whether the
+Ride Summary / Elevation Profile panels start open or collapsed. Settings
 persist to `localStorage` via a generic `loadPersistedState`/
 `savePersistedState` pair in `src/utils/persistence/localStorageState.ts`,
 keyed by a `schemaVersion` so a future shape change falls back to defaults

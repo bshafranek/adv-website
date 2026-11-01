@@ -10,6 +10,8 @@ export interface Settings {
   defaultBasemapId: string;
   activeRouteHighlightColor: string;
   theme: Theme;
+  rideSummaryDefaultOpen: boolean;
+  elevationProfileDefaultOpen: boolean;
 }
 
 export const SETTINGS_STORAGE_KEY = 'adv-website:settings';
@@ -20,4 +22,6 @@ export const DEFAULT_SETTINGS: Settings = {
   defaultBasemapId: 'street',
   activeRouteHighlightColor: ACTIVE_ROUTE_HIGHLIGHT_COLOR,
   theme: 'dark',
+  rideSummaryDefaultOpen: false,
+  elevationProfileDefaultOpen: false,
 };

@@ -7,6 +7,8 @@ export interface SettingsContextValue {
   setDefaultBasemapId: (basemapId: string) => void;
   setActiveRouteHighlightColor: (color: string) => void;
   setTheme: (theme: Settings['theme']) => void;
+  setRideSummaryDefaultOpen: (open: boolean) => void;
+  setElevationProfileDefaultOpen: (open: boolean) => void;
   resetSettings: () => void;
 }
 
