@@ -14,13 +14,15 @@ export function HowToUsePage() {
           <p>
             Check a route's box in the sidebar to add it to the map and the Active Layers list.
             Click a route's title to select it as the active route for the elevation chart and ride
-            summary stats.
+            summary stats. Each collection also has its own checkbox next to its name that shows or
+            hides every route in that collection at once.
           </p>
         </section>
         <section>
           <h2 className="font-semibold text-gray-100">Active Layers</h2>
           <p>
             Drag a row by its ⠿ handle to reorder which route draws on top where routes overlap.
+            "Clear all" next to the Active Layers heading hides every active route at once.
           </p>
           <p className="mt-2 flex flex-wrap items-center gap-1">
             Each row has two icons for showing/hiding that route's line and waypoints independently
@@ -55,9 +57,10 @@ export function HowToUsePage() {
         <section>
           <h2 className="font-semibold text-gray-100">Map controls</h2>
           <p>
-            Switch between Street, Topographic, and Aerial basemaps top-right of the map. The small
-            button under the zoom controls (top-left) fits the view to whatever routes are currently
-            visible. The button bottom-right toggles full screen.
+            The basemap button top-right of the map opens a dropdown to switch between Street,
+            Aerial, Topographic, and Light Gray basemaps. The small button under the zoom controls
+            (top-left) fits the view to whatever routes are currently visible. The button
+            bottom-right toggles full screen.
           </p>
         </section>
         <section>
@@ -72,8 +75,10 @@ export function HowToUsePage() {
         <section>
           <h2 className="font-semibold text-gray-100">Downloading GPX files</h2>
           <p>
-            Open <strong>Download</strong> from the ☰ menu to grab raw .gpx files — download an
-            entire collection at once as a .zip, or an individual route's file directly.
+            Open <strong>Download</strong> from the ☰ menu to grab raw .gpx files. Check routes from
+            anywhere on the page — any mix of groups and collections — to bundle a custom selection
+            into one .zip, use a group's or collection's own "Download All" for everything in it at
+            once, or click "Download" next to a single route for just its raw .gpx file.
           </p>
         </section>
       </div>

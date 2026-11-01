@@ -23,11 +23,17 @@ to `true`. `MapView` filters waypoint markers on this flag separately from
 the polyline rendering. Lives **only in `ActiveLayersList`**, not in the
 sidebar's `RouteListItem` browse list (removed from there per feedback).
 
-## ~~Active Layers list should stay visible while scrolling~~ — done
+## Active Layers list staying visible while scrolling — reverted
 
-Its wrapper in `ViewerPage` is `sticky top-0` within the sidebar's scroll
-container, with its own `bg-surface` so scrolled content doesn't show
-through underneath it.
+Tried making its wrapper in `ViewerPage` `sticky top-0` within the sidebar's
+scroll container. Broke down once Active Layers held 100+ rows (e.g. all TAT
+routes toggled on): the sticky box grew to the full row-list height and
+stayed pinned, pushing the collections list below it out of reach, and a
+follow-up fix (capping it with its own `overflow-y-auto`) just traded that
+for two visible scrollbars in the sidebar. Reverted to plain flow — Active
+Layers, Local Files, and the collections list all share one scrollbar on
+`<aside>` now. Worth it for routes with 100+ active layers, less so for a
+handful — revisit only with a design that doesn't reintroduce either problem.
 
 ## ~~Hide Ride Summary cards when no route is selected~~ — done
 
